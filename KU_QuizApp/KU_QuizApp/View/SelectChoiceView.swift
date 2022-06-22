@@ -11,7 +11,7 @@ struct SelectChoiceView: View {
     @EnvironmentObject var quiz: Quiz
     let scoreIdx: Int
     let questionIdx: Int
-    @State private var selectedNum: Int = 0
+    @State var selectedNum: Int = 0
     var body: some View {
         HStack {
             let question = quiz.fetchQuestion(testNum: quiz.scores[scoreIdx].testNum, scoreIdx: scoreIdx, questionIdx: questionIdx)

@@ -27,7 +27,7 @@ struct QuestionSubView: View {
                     .opacity(question.type == 6 ? 1 : 0)
                 ChoiceListView(question: question, showInfo: $showInfo)
             }
-            SelectChoiceView(scoreIdx: scoreIdx, questionIdx: questionIdx)
+            SelectChoiceView(scoreIdx: scoreIdx, questionIdx: questionIdx, selectedNum: quiz.scores[scoreIdx].answers[questionIdx])
                 .environmentObject(quiz)
         }
     }
