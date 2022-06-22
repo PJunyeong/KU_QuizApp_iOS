@@ -57,7 +57,7 @@ struct TestListView: View {
                             Button(action: {
                                 withAnimation {
                                     questionCnt = qCnt
-                                    scoreIdx = quiz.scoreIdxCached(isTest: false, testNum: nil, type: typeNum, questionCnt: qCnt)
+                                    scoreIdx = quiz.scoreIdxCached(isTest: false, testNum: nil, type: type, questionCnt: qCnt)
                                     isConfirmationClicked = true
                                 }
                             }, label: {

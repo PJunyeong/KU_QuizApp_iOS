@@ -11,7 +11,7 @@ struct QuestionView: View {
     @EnvironmentObject var quiz: Quiz
     let scoreIdx: Int
     @State var questionNum: Double = 1.0
-    @State var selectedQuestion: Int = 1
+    @State var selectedQuestion: Int = 0
     var body: some View {
         VStack(alignment: .center) {
             QuestionNavBarView(scoreIdx: scoreIdx)
@@ -19,6 +19,7 @@ struct QuestionView: View {
             TabView(selection: $selectedQuestion) {
                 ForEach(0..<quiz.scores[scoreIdx].questionCnt, id:\.self) { idx in
                     QuestionSubView(scoreIdx: scoreIdx, questionIdx: idx)
+                        .tag(idx)
                         .environmentObject(quiz)
                 }
             }
