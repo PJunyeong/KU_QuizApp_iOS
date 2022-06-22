@@ -11,23 +11,24 @@ class Quiz: Identifiable, ObservableObject {
     let questions: [Question] = Bundle.main.decode("questions.json")
     let questionBox: [QuestionBox] = Bundle.main.decode("questionBox.json")
     // 문제 정보 -> JSON 파싱
-    @Published var bookmarks: [Bookmark] = [] {
+    @Published var bookmarks: [Bookmark] = [Bookmark(testNum: 10, number: 1)] {
         didSet {
             bookmarkSave()
     ()
         }
     }
-    @Published var notes: [Note] = [] {
+    @Published var notes: [Note] = [Note(testNum: 10, number: 1, type: 1)] {
         didSet {
             noteSave()
         }
     }
-    @Published var scores: [Score] = [] {
+    @Published var scores: [Score] = [Score(date: Date(), isTest: true, isSubmitted: false, testNum: 10, type: nil, questionCnt: 100, questions: nil, answers: Array(repeating: 0, count: 101))] {
         didSet {
             scoreSave()
         }
     }
     // 사용자 기록 -> @Published 통해 지속 관리
+    // Preview load를 위한 더미 데이터 -> 실제로는 빈 배열로 설정 후 세이브 데이터 로드하기
     
     func load() {
         bookmarkLoad()
