@@ -79,7 +79,7 @@ struct TestListView: View {
 struct TestListView_Previews: PreviewProvider {
     static let quiz: Quiz = Quiz()
     static var previews: some View {
-        TestListView(isTest: .constant(false))
+        TestListView(isTest: .constant(true))
             .environmentObject(quiz)
     }
 }

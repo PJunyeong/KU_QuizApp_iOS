@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Score: Identifiable, Codable {
     let id = UUID()
@@ -18,6 +19,35 @@ struct Score: Identifiable, Codable {
     var questions: [Question]? = nil
     var answers: [Int] = []
     
+    var submittedScore: Int {
+        if questions == nil && testNum != nil {
+            let questions: [Question] = Bundle.main.decode("questions.json")
+            let questionsFiltered = questions.filter{$0.testNum == testNum!}.sorted(by: {$0.number < $1.number})
+            let rightAnswers = questionsFiltered.map{$0.answer}
+            var total = 0
+            guard rightAnswers.count == questionCnt else {
+                return total
+            }
+            for idx in 0..<questionCnt {
+                if rightAnswers[idx] == answers[idx] {
+                    total += 1
+                }
+            }
+            return total
+        } else {
+            var total = 0
+            guard questions != nil else {
+                return total
+            }
+            for idx in 0..<questionCnt {
+                if questions![idx].answer == answers[idx] {
+                    total += 1
+                }
+            }
+            return total
+        }
+    }
+    
     mutating func setQuestions(questions: [Question]) -> Void {
         guard questions.count == questionCnt else {
             return
@@ -28,6 +58,10 @@ struct Score: Identifiable, Codable {
     mutating func setAnswers() -> Void {
         self.answers = Array(repeating: 0, count: questionCnt + 1)
         // answer 개수 -> 문제 수 조정
+    }
+    
+    mutating func submit() -> Void {
+        self.isSubmitted = true
     }
     
     var isAllChecked: Bool {

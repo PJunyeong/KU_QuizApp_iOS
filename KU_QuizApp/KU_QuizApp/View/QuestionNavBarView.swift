@@ -17,7 +17,7 @@ struct QuestionNavBarView: View {
     
     var body: some View {
         HStack {
-            NavigationLink(destination: ScoreDetailView(), tag: true, selection: $isSubmitted) {
+            NavigationLink(destination: ScoreDetailView(scoreIdx: scoreIdx).environmentObject(quiz), tag: true, selection: $isSubmitted) {
                 EmptyView()
             }
             
@@ -62,6 +62,7 @@ struct QuestionNavBarView: View {
         }
         .alert(Text(quiz.scores[scoreIdx].isAllChecked ? "모두 풀었어요!" : "안 푼 문제가 있어요!"), isPresented: $showSubmitAlert) {
             Button(action: {
+                quiz.scores[scoreIdx].submit()
                 isSubmitted = true
             }, label: {
                 Text("제출할게요!")
