@@ -19,7 +19,12 @@ struct TestView: View {
             Button(action: {
                 quiz.scoreReset()
             }, label: {
-                Text("RESET")
+                Text("RESET SCORE")
+            })
+            Button(action: {
+                quiz.resetBookmark()
+            }, label: {
+                Text("RESET BOOKMARK")
             })
         }
     }

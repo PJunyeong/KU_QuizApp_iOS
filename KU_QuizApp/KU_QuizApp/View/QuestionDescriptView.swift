@@ -13,19 +13,15 @@ struct QuestionDescriptView: View {
     let questionDescript: String
     let isTest: Bool
     var body: some View {
-        VStack {
-            HStack {
-                Spacer()
-                Text("제 \(testNum)회 기출")
-                Text("\(number)번")
-                Spacer()
+        VStack(alignment: .center) {
+            if !isTest {
+                Text("제 \(testNum)회 기출 \(number)번")
             }
-            .font(.title)
-            .opacity(isTest ? 0 : 1)
             Text(questionDescript)
-                .font(.title)
                 .fontWeight(.bold)
         }
+        .padding(.bottom, 10)
+        .font(.title3)
         .foregroundColor(.gray)
     }
 }

@@ -13,7 +13,8 @@ struct SliderView: View {
     @Binding var selectedQuestion: Int
     let questionCnt: Int
     var body: some View {
-        VStack {
+        //TODO: 슬라이더 뷰 패딩 최소화
+        HStack(alignment: .center, spacing: .leastNormalMagnitude) {
             Slider(value: $questionNum, in: 1...Double(questionCnt), step: 1) {
                 Text("Speed")
             } minimumValueLabel: {
@@ -26,21 +27,12 @@ struct SliderView: View {
             .onChange(of: questionNum, perform: { offset in
                 selectedQuestion = Int(offset) - 1
             })
-            .padding(.horizontal, 10)
-            .padding(.bottom, 10)
-            
-            HStack {
-                Text("\(Int(questionNum))")
-                    .font(.headline)
-                    .fontWeight(.bold)
-                Text(" / ")
-                Text("\(Int(questionCnt))")
-                    .font(.headline)
-                    .fontWeight(.bold)
-            }
-            .foregroundColor(.accentColor)
+            Text("\(Int(questionNum)) / \(Int(questionCnt))")
+                .font(.headline)
+                .foregroundColor(.accentColor)
         }
-        .padding()
+        .padding(.horizontal, 20)
+
     }
 }
 

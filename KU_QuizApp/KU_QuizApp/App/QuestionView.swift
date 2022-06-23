@@ -29,7 +29,6 @@ struct QuestionView: View {
             }
         }
         .ignoresSafeArea(.all, edges: .top)
-        .navigationBarHidden(true)
     }
 }
 

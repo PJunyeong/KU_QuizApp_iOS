@@ -71,9 +71,15 @@ struct Score: Identifiable, Codable {
     
     var questionTitle: String {
         if isTest {
-            return "제 \(testNum!)회 한자 기출 시험"
+            guard let testNum = testNum else {
+                return "제 10회 한자 기출 시험"
+            }
+            return "제 \(testNum)회 한자 기출 시험"
         } else {
-            return "\(type!)회 한자 유형별 기출 시험"
+            guard let type = type else {
+                return "한자 유형 1번 기출 시험"
+            }
+            return "한자 유형 \(type)번 기출 시험"
         }
     }
     

@@ -11,11 +11,11 @@ struct QuestionDetailView: View {
     let question: Question
     @Binding var showInfo: Bool
     var body: some View {
-        Text(showInfo ? question.questionDetail : question.question)
-            .font(.largeTitle)
+        Text(showInfo && !question.questionDetail.isEmpty ? question.questionDetail : question.question)
+            .font(.title)
             .fontWeight(.bold)
-            .padding()
             .multilineTextAlignment(.leading)
+            .padding(.horizontal, 10)
     }
 }
 

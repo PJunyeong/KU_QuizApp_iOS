@@ -18,14 +18,10 @@ struct QuestionNavBarView: View {
     
     var body: some View {
         HStack {
-//            NavigationLink(destination: ScoreDetailView(scoreIdx: scoreIdx).environmentObject(quiz), tag: true, selection: $isSubmitted) {
-//                EmptyView()
-//            }
-            
             Button(action: {
                 showBackAlert.toggle()
             }, label: {
-                Image(systemName: "delete.backward")
+                Image(systemName: "chevron.left")
                     .font(.headline)
             })
             Spacer()
@@ -50,31 +46,31 @@ struct QuestionNavBarView: View {
         .padding(.horizontal, 15)
         .padding(.bottom)
         .padding(.top, SafeAreaTop())
+        .padding(.top, 20)
         .background(.white)
         .shadow(color: Color.black.opacity(0.05), radius: 5, x: 0, y: 5)
-        .alert("경고!", isPresented: $showBackAlert) {
-            Button(action: {
+        .alert("문제를 그만 푸시겠습니까?", isPresented: $showBackAlert, actions: {
+            Button("네", role: .destructive) {
                 dismiss()
-//                NavigationUtil.popToRootView()
-            }, label: {
-                Text("그만 둘래요!")
-            })
-            Button("계속 풀게요!", role: .cancel) {}
-        }
-        .alert(Text(quiz.scores[scoreIdx].isAllChecked ? "모두 풀었어요!" : "안 푼 문제가 있어요!"), isPresented: $showSubmitAlert) {
+            }
+            Button("아니오", role: .cancel) {
+            }
+        }, message: {
+            Text("지금까지 푼 기록이 저장됩니다")
+        })
+        .alert(Text(quiz.scores[scoreIdx].isAllChecked ? "모든 문제를 풀었습니다" : "아직 풀지 않은 문제가 있습니다"), isPresented: $showSubmitAlert) {
             Button(action: {
                 quiz.scores[scoreIdx].submit()
                 isSubmitted.toggle()
             }, label: {
-                Text("제출할게요!")
+                Text("제출")
             })
-            Button("계속 풀게요!", role: .cancel) {}
+            Button("취소", role: .cancel) {}
         }
         .fullScreenCover(isPresented: $isSubmitted, content: {
             ScoreDetailView(scoreIdx: scoreIdx).environmentObject(quiz)
         })
-    }
-}
+    }}
 
 struct QuestionNavBarView_Previews: PreviewProvider {
     static let quiz = Quiz()

@@ -15,20 +15,19 @@ struct QuestionSubView: View {
     var body: some View {
         VStack {
             let question = quiz.fetchQuestion(testNum: quiz.scores[scoreIdx].testNum, scoreIdx: scoreIdx, questionIdx: questionIdx)
-            HStack {
-                Spacer()
-                QuestionDescriptView(testNum: question.testNum, number: question.number, questionDescript: quiz.questionDescript(type: question.type), isTest: quiz.scores[scoreIdx].isTest)
-                Spacer()
-            }
             InfoLabelView(testNum: question.testNum, questionNum: question.number, showInfo: $showInfo)
-            ScrollView {
+            ScrollView(showsIndicators: false) {
+                QuestionDescriptView(testNum: question.testNum, number: question.number, questionDescript: quiz.questionDescript(type: question.type), isTest: quiz.scores[scoreIdx].isTest)
                 QuestionDetailView(question: question, showInfo: $showInfo)
                 QuestionBoxView(questionBox: quiz.fetchQuestionBox(testNum: question.testNum, order: question.order))
                     .opacity(question.type == 6 ? 1 : 0)
-                ChoiceListView(question: question, showInfo: $showInfo)
+                ChoiceListView(question: question, scoreIdx: scoreIdx, questionIdx: questionIdx, selectedNum: quiz.scores[scoreIdx].answers[questionIdx], showInfo: $showInfo)
+                    .environmentObject(quiz)
             }
-            SelectChoiceView(scoreIdx: scoreIdx, questionIdx: questionIdx, selectedNum: quiz.scores[scoreIdx].answers[questionIdx])
-                .environmentObject(quiz)
+//            Divider()
+//            SelectChoiceView(scoreIdx: scoreIdx, questionIdx: questionIdx, selectedNum: quiz.scores[scoreIdx].answers[questionIdx])
+//                .environmentObject(quiz)
+            // TODO: 보기 버튼 VSTACK
         }
     }
 }

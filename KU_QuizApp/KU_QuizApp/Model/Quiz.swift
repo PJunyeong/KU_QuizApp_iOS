@@ -22,8 +22,8 @@ class Quiz: Identifiable, ObservableObject {
             noteSave()
         }
     }
-    // [Score(date: Date(), isTest: true, isSubmitted: false, testNum: 10, type: nil, questionCnt: 100, questions: nil, answers: Array(repeating: 0, count: 101))]
-    @Published var scores: [Score] = [] {
+    @Published var scores: [Score] = [Score(date: Date(), isTest: true, isSubmitted: false, testNum: 10, type: nil, questionCnt: 100, questions: nil, answers: Array(repeating: 0, count: 101))]
+ {
         didSet {
             scoreSave()
         }
@@ -134,6 +134,13 @@ class Quiz: Identifiable, ObservableObject {
         return -1
     }
     
+    func removeScoreIdx(scoreIdx: Int) -> Void {
+        guard scoreIdx < scores.count else {
+            return
+        }
+        scores.remove(at: scoreIdx)
+    }
+    
     func scoreReset() -> Void {
         print(scores)
         print("Score Reset")
@@ -143,8 +150,9 @@ class Quiz: Identifiable, ObservableObject {
     func setScoreIdx(isTest: Bool, testNum: Int?, type: Int?, questionCnt: Int) -> Int {
         var score = Score(date: Date(), isTest: isTest, testNum: testNum, type: type, questionCnt: questionCnt)
         score.setAnswers()
-        if !isTest && type != nil {
-            let questions = randomQuestions(type: type!, questionCnt: questionCnt)
+        let type: Int = type ?? 1
+        if !isTest {
+            let questions = randomQuestions(type: type, questionCnt: questionCnt)
             score.setQuestions(questions: questions)
         }
         scores.append(score)
@@ -203,6 +211,10 @@ class Quiz: Identifiable, ObservableObject {
                 }
             }
         }
+    }
+    
+    func resetBookmark() -> Void {
+        bookmarks = []
     }
     
     func fetchQuestions(testNum: Int?, scoreIdx: Int) -> [Question] {

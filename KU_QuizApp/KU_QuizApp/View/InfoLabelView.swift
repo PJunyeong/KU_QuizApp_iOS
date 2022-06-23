@@ -19,16 +19,15 @@ struct InfoLabelView: View {
                 quiz.toggleBookmark(testNum: testNum, number: questionNum)
             }, label: {
                 Image(systemName: quiz.isBookmarked(testNum: testNum, number: questionNum) ? "bookmark.fill" : "bookmark")
-                    .font(.largeTitle)
             })
             Button(action: {
                 showInfo.toggle()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {showInfo.toggle()})
             }, label: {
                 Image(systemName: showInfo ? "info.circle.fill" : "info.circle")
-                    .font(.largeTitle)
             })
         }
+        .font(.title3)
         .padding(.horizontal, 20)
         .foregroundColor(.accentColor)
     }
