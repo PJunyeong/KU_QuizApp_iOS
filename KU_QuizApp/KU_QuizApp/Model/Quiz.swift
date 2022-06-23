@@ -22,7 +22,8 @@ class Quiz: Identifiable, ObservableObject {
             noteSave()
         }
     }
-    @Published var scores: [Score] = [Score(date: Date(), isTest: true, isSubmitted: false, testNum: 10, type: nil, questionCnt: 100, questions: nil, answers: Array(repeating: 0, count: 101))] {
+    // [Score(date: Date(), isTest: true, isSubmitted: false, testNum: 10, type: nil, questionCnt: 100, questions: nil, answers: Array(repeating: 0, count: 101))]
+    @Published var scores: [Score] = [] {
         didSet {
             scoreSave()
         }
@@ -99,6 +100,13 @@ class Quiz: Identifiable, ObservableObject {
         }
     }
     
+    func scoreIdxSearch(scoreIdx: Int) -> Score {
+        guard scores.count > scoreIdx else {
+            return Score(date: Date(), isTest: true, isSubmitted: false, testNum: 10, type: nil, questionCnt: 100, questions: nil, answers: Array(repeating: 0, count: 101))
+        }
+        return scores[scoreIdx]
+    }
+    
     func isScoreCached(isTest: Bool, testNum: Int?, type: Int?, questionCnt: Int) -> Bool {
         let scoreFiltered = scores.filter{$0.isTest == isTest && $0.testNum == testNum && $0.type == type && $0.questionCnt == questionCnt && $0.isSubmitted == false}
         if scoreFiltered.isEmpty {
@@ -127,6 +135,8 @@ class Quiz: Identifiable, ObservableObject {
     }
     
     func scoreReset() -> Void {
+        print(scores)
+        print("Score Reset")
         scores = []
     }
     

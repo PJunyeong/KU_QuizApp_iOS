@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "DA77AF91-594D-4F1C-A333-510177AA19B9"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A2182872-E19A-4DE9-971C-5A04EC7AEAC3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KU_QuizApp/App/QuestionView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "11"
+            endingLineNumber = "11"
+            landmarkName = "QuestionView"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "A2182872-E19A-4DE9-971C-5A04EC7AEAC3 - c02ea8a48ae8cba3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KU_QuizApp.QuestionView.quiz.getter : KU_QuizApp.Quiz"
+                  moduleName = "KU_QuizApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/junyeong_park/Documents/KU_QuizApp_iOS/KU_QuizApp/KU_QuizApp/App/QuestionView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "11"
+                  endingLineNumber = "11"
+                  offsetFromSymbolStart = "92">
+               </Location>
+               <Location
+                  uuid = "A2182872-E19A-4DE9-971C-5A04EC7AEAC3 - 513a5b7b79885635"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "KU_QuizApp.QuestionView.$quiz.getter : SwiftUI.EnvironmentObject&lt;KU_QuizApp.Quiz&gt;.Wrapper"
+                  moduleName = "KU_QuizApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/junyeong_park/Documents/KU_QuizApp_iOS/KU_QuizApp/KU_QuizApp/App/QuestionView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "11"
+                  endingLineNumber = "11"
+                  offsetFromSymbolStart = "92">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0FCD978F-F933-4FB4-A052-744CD665C3A5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "KU_QuizApp/App/QuestionView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "QuestionView"
+            landmarkType = "14">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

@@ -28,6 +28,6 @@ struct ChoiceLabelView: View {
 
 struct ChoiceLabelView_Previews: PreviewProvider {
     static var previews: some View {
-        ChoiceLabelView(choiceInfo: Choice(choiceNum: 1, choice: "보기1", choiceDetail: "보기 해설"), answer: 1, showInfo: .constant(true))
+        ChoiceLabelView(choiceInfo: Choice(choiceNum: 1, choice: "보기1", choiceDetail: "보기 해설"), answer: 1, showInfo: .constant(false))
     }
 }

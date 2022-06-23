@@ -37,11 +37,11 @@ struct Score: Identifiable, Codable {
             return total
         } else {
             var total = 0
-            guard questions != nil else {
+            guard let questions = questions else {
                 return total
             }
             for idx in 0..<questionCnt {
-                if questions![idx].answer == answers[idx] {
+                if questions[idx].answer == answers[idx] {
                     total += 1
                 }
             }
@@ -84,5 +84,4 @@ struct Score: Identifiable, Codable {
         
         self.answers[questionIdx] = answer        
     }
-    
 }
