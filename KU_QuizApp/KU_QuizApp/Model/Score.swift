@@ -24,6 +24,7 @@ struct Score: Identifiable, Codable {
             let questions: [Question] = Bundle.main.decode("questions.json")
             let questionsFiltered = questions.filter{$0.testNum == testNum!}.sorted(by: {$0.number < $1.number})
             let rightAnswers = questionsFiltered.map{$0.answer}
+            
             var total = 0
             guard rightAnswers.count == questionCnt else {
                 return total

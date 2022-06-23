@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum Tab{
+enum Tab {
     case first
     case second
     case third
