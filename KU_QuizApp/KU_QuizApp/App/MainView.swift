@@ -36,6 +36,7 @@ struct MainView: View {
             .navigationTitle(tabSelected.title)
             .navigationBarTitleDisplayMode(.large)
             .font(.largeTitle)
+            // TODO; 모달 뷰 dismiss 시 네비게이션 Large TItle 업데이트가 늦음
         }
     }
 }

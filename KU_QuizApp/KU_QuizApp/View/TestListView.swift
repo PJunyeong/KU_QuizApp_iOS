@@ -15,32 +15,35 @@ struct TestListView: View {
     @State private var questionCnt: Int = 10
     @State private var testNum: Int = 10
     @State private var type: Int = 1
-    @State private var isTestClicekd: Bool? = false
+    @State private var isTestClicekd: Bool = false
     @State private var isConfirmationShown: Bool = false
-    @State private var isConfirmationClicked: Bool? = false
+    @State private var isConfirmationClicked: Bool = false
     @State private var scoreIdx: Int = 0
     @Binding var isTest: Bool
     var body: some View {
         if isTest {
-            NavigationLink(destination: QuestionView(scoreIdx: scoreIdx), tag: true, selection: $isTestClicekd) {
-                EmptyView()
-            }
+//            NavigationLink(destination: QuestionView(scoreIdx: scoreIdx), tag: true, selection: $isTestClicekd) {
+//                EmptyView()
+//            }
                         
             ForEach(testNums, id:\.self) { testNum in
                 Button(action: {
                     self.testNum = testNum
                     scoreIdx = quiz.scoreIdxCached(isTest: true, testNum: testNum, type: nil, questionCnt: 100)
-                    isTestClicekd = true
+                    isTestClicekd.toggle()
                     
                 }, label: {
                     TestLabelView(testLabelName: "기출 \(testNum)회")
                 })
+                .fullScreenCover(isPresented: $isTestClicekd, content: {
+                    QuestionView(scoreIdx: scoreIdx).environmentObject(quiz)
+                })
             }
         } else {
             
-            NavigationLink(destination: QuestionView(scoreIdx: scoreIdx), tag: true, selection: $isConfirmationClicked) {
-                EmptyView()
-            }
+//            NavigationLink(destination: QuestionView(scoreIdx: scoreIdx), tag: true, selection: $isConfirmationClicked) {
+//                EmptyView()
+//            }
             
             ForEach(typeNums, id:\.self) { typeNum in
                 TestLabelView(testLabelName: "유형 0\(typeNum)회")
@@ -58,7 +61,7 @@ struct TestListView: View {
                                 withAnimation {
                                     questionCnt = qCnt
                                     scoreIdx = quiz.scoreIdxCached(isTest: false, testNum: nil, type: type, questionCnt: qCnt)
-                                    isConfirmationClicked = true
+                                    isConfirmationClicked.toggle()
                                 }
                             }, label: {
                                 Text("\(qCnt)개 풀기")
@@ -71,6 +74,9 @@ struct TestListView: View {
                             }
                         }
                     }
+                    .fullScreenCover(isPresented: $isConfirmationClicked, content: {
+                        QuestionView(scoreIdx: scoreIdx).environmentObject(quiz)
+                    })
             }
         }
     }

@@ -11,7 +11,11 @@ struct ScoreDetailView: View {
     @EnvironmentObject var quiz: Quiz
     let scoreIdx: Int
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button(action: {
+            popToRootView()
+        }, label: {
+            Text("DISMISS")
+        })
     }
 }
 
