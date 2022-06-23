@@ -11,14 +11,17 @@ struct InfoLabelView: View {
     @EnvironmentObject var quiz: Quiz
     let testNum: Int
     let questionNum: Int
+    @State var isBookmarked: Bool
     @Binding var showInfo: Bool
     var body: some View {
         HStack {
             Spacer()
             Button(action: {
+                isBookmarked.toggle()
                 quiz.toggleBookmark(testNum: testNum, number: questionNum)
             }, label: {
-                Image(systemName: quiz.isBookmarked(testNum: testNum, number: questionNum) ? "bookmark.fill" : "bookmark")
+//                Image(systemName: quiz.isBookmarked(testNum: testNum, number: questionNum) ? "bookmark.fill" : "bookmark")
+                Image(systemName: isBookmarked ? "bookmark.fill" : "bookmark")
             })
             Button(action: {
                 showInfo.toggle()
@@ -36,7 +39,7 @@ struct InfoLabelView: View {
 struct InfoLabelView_Previews: PreviewProvider {
     static let quiz = Quiz()
     static var previews: some View {
-        InfoLabelView(testNum: 10, questionNum: 1, showInfo: .constant(true))
+        InfoLabelView(testNum: 10, questionNum: 1, isBookmarked: true, showInfo: .constant(true))
             .environmentObject(quiz)
     }
 }

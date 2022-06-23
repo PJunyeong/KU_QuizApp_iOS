@@ -189,8 +189,10 @@ class Quiz: Identifiable, ObservableObject {
     func toggleBookmark(testNum: Int, number: Int) -> Void {
         if isBookmarked(testNum: testNum, number: number) {
             removeBookmark(testNum: testNum, number: number)
+            print("removeBookmark")
         } else {
             setBookmark(testNum: testNum, number: number)
+            print("setBookmark")
         }
     }
     
