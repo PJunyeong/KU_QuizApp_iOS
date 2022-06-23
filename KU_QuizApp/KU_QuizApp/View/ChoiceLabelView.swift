@@ -17,7 +17,7 @@ struct ChoiceLabelView: View {
     @Binding var showInfo: Bool
     var body: some View {
         HStack {
-            Image(systemName: NumberImage2(choiceNum: choiceInfo.choiceNum, selectedNum: selectedNum))
+            Image(systemName: NumberImage(choiceNum: choiceInfo.choiceNum, selectedNum: selectedNum))
                 .font(.largeTitle)
                 .foregroundColor(.accentColor)
                 .padding(.horizontal, 20)

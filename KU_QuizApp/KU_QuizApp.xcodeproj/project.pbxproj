@@ -43,9 +43,8 @@
 		4AA41BB82862946E002D4D86 /* QuestionBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA41BB72862946E002D4D86 /* QuestionBoxView.swift */; };
 		4AA41BBA286297C2002D4D86 /* ChoiceLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA41BB9286297C2002D4D86 /* ChoiceLabelView.swift */; };
 		4AA41BBC286297C9002D4D86 /* ChoiceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA41BBB286297C8002D4D86 /* ChoiceListView.swift */; };
-		4AD977CA2862C66D005EC185 /* NumberImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD977C92862C66D005EC185 /* NumberImage.swift */; };
 		4AD977CC2862C887005EC185 /* Choice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD977CB2862C887005EC185 /* Choice.swift */; };
-		4AD977D02862DADE005EC185 /* NumberImage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD977CF2862DADE005EC185 /* NumberImage2.swift */; };
+		4AD977D02862DADE005EC185 /* NumberImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD977CF2862DADE005EC185 /* NumberImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,9 +85,8 @@
 		4AA41BB72862946E002D4D86 /* QuestionBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionBoxView.swift; sourceTree = "<group>"; };
 		4AA41BB9286297C2002D4D86 /* ChoiceLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceLabelView.swift; sourceTree = "<group>"; };
 		4AA41BBB286297C8002D4D86 /* ChoiceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceListView.swift; sourceTree = "<group>"; };
-		4AD977C92862C66D005EC185 /* NumberImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberImage.swift; sourceTree = "<group>"; };
 		4AD977CB2862C887005EC185 /* Choice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Choice.swift; sourceTree = "<group>"; };
-		4AD977CF2862DADE005EC185 /* NumberImage2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberImage2.swift; sourceTree = "<group>"; };
+		4AD977CF2862DADE005EC185 /* NumberImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,8 +195,7 @@
 				4AA41B8B2861AE76002D4D86 /* DocumentDirectory.swift */,
 				4AA41BAB286209FA002D4D86 /* SafeAreaTop.swift */,
 				4AA41BAD28621378002D4D86 /* popToRootView.swift */,
-				4AD977C92862C66D005EC185 /* NumberImage.swift */,
-				4AD977CF2862DADE005EC185 /* NumberImage2.swift */,
+				4AD977CF2862DADE005EC185 /* NumberImage.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -299,7 +296,7 @@
 				4AA41B922861B2A9002D4D86 /* Tab.swift in Sources */,
 				4AA41BB6286293C3002D4D86 /* QuestionSubView.swift in Sources */,
 				4AA41BAE28621378002D4D86 /* popToRootView.swift in Sources */,
-				4AD977D02862DADE005EC185 /* NumberImage2.swift in Sources */,
+				4AD977D02862DADE005EC185 /* NumberImage.swift in Sources */,
 				4AA41BB42862932F002D4D86 /* QuestionDetailView.swift in Sources */,
 				4AA41B752861A5C0002D4D86 /* Bookmark.swift in Sources */,
 				4AA41B712861A591002D4D86 /* Question.swift in Sources */,
@@ -317,7 +314,6 @@
 				4AA41B9C2861B842002D4D86 /* SegmentedPickerView.swift in Sources */,
 				4AA41B9A2861B516002D4D86 /* TestLabelView.swift in Sources */,
 				4AD977CC2862C887005EC185 /* Choice.swift in Sources */,
-				4AD977CA2862C66D005EC185 /* NumberImage.swift in Sources */,
 				4AA41B772861A5D4002D4D86 /* Note.swift in Sources */,
 				4A47556B2864BCBD00AFC321 /* NoteLabelView.swift in Sources */,
 				4AA41B942861B415002D4D86 /* TestView.swift in Sources */,
