@@ -142,9 +142,8 @@ class Quiz: Identifiable, ObservableObject {
     }
     
     func scoreReset() -> Void {
-        print(scores)
-        print("Score Reset")
         scores = []
+        print("Score Reset")
     }
     
     func setScoreIdx(isTest: Bool, testNum: Int?, type: Int?, questionCnt: Int) -> Int {
@@ -219,6 +218,19 @@ class Quiz: Identifiable, ObservableObject {
         bookmarks = []
     }
     
+    func bookmarkSorted() -> [Bookmark] {
+        let bookmarks = bookmarks.sorted(by: {
+            if $0.testNum < $1.testNum {
+                return true
+            } else if $0.testNum == $1.testNum && $0.number < $1.number {
+                return true
+            } else {
+                return false
+            }
+        })
+        return bookmarks
+    }
+    
     func fetchQuestions(testNum: Int?, scoreIdx: Int) -> [Question] {
         if testNum == nil {
             if scores[scoreIdx].questions != nil {
@@ -241,6 +253,39 @@ class Quiz: Identifiable, ObservableObject {
             return ""
         } else {
             return questionBox[0].box
+        }
+    }
+    
+    func noteSorted(orderSelected: Int) -> [Note] {
+        if orderSelected == 0 {
+            // 많이 틀린 순서
+            return notes.sorted(by: {$0.wrongCnt > $1.wrongCnt})
+        } else if orderSelected == 1 {
+            // 기출 회차별
+            let notes = notes.sorted(by: {
+                if $0.testNum < $1.testNum {
+                    return true
+                } else if $0.testNum == $1.testNum && $0.number < $1.number {
+                    return true
+                } else {
+                    return false
+                }
+            })
+            return notes
+        } else {
+            // 유형별
+            let notes = notes.sorted(by: {
+                if $0.type < $1.type {
+                    return true
+                } else if $0.type == $1.type && $0.testNum < $1.testNum {
+                    return true
+                } else if $0.type == $1.type && $0.testNum == $1.testNum && $0.number < $1.number {
+                    return true
+                } else {
+                    return false
+                }
+            })
+            return notes
         }
     }
 }
