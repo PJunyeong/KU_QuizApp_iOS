@@ -27,7 +27,7 @@ struct InfoLabelView: View {
                 Image(systemName: showInfo ? "info.circle.fill" : "info.circle")
             })
         }
-        .font(.title3)
+        .font(.title)
         .padding(.horizontal, 20)
         .foregroundColor(.accentColor)
     }

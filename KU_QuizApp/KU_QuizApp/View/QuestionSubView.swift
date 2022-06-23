@@ -24,10 +24,6 @@ struct QuestionSubView: View {
                 ChoiceListView(question: question, scoreIdx: scoreIdx, questionIdx: questionIdx, selectedNum: quiz.scores[scoreIdx].answers[questionIdx], showInfo: $showInfo)
                     .environmentObject(quiz)
             }
-//            Divider()
-//            SelectChoiceView(scoreIdx: scoreIdx, questionIdx: questionIdx, selectedNum: quiz.scores[scoreIdx].answers[questionIdx])
-//                .environmentObject(quiz)
-            // TODO: 보기 버튼 VSTACK
         }
     }
 }

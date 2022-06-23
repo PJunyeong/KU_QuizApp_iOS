@@ -50,7 +50,7 @@ struct QuestionNavBarView: View {
         .background(.white)
         .shadow(color: Color.black.opacity(0.05), radius: 5, x: 0, y: 5)
         .alert("문제를 그만 푸시겠습니까?", isPresented: $showBackAlert, actions: {
-            Button("네", role: .destructive) {
+            Button("네. 그만 풀겠습니다", role: .destructive) {
                 dismiss()
             }
             Button("아니오", role: .cancel) {
@@ -58,14 +58,12 @@ struct QuestionNavBarView: View {
         }, message: {
             Text("지금까지 푼 기록이 저장됩니다")
         })
-        .alert(Text(quiz.scores[scoreIdx].isAllChecked ? "모든 문제를 풀었습니다" : "아직 풀지 않은 문제가 있습니다"), isPresented: $showSubmitAlert) {
-            Button(action: {
+        .alert(Text(quiz.scores[scoreIdx].isAllChecked ? "모든 문제를 풀었습니다. 제출하시겠습니까?" : "아직 풀지 않은 문제가 있습니다"), isPresented: $showSubmitAlert) {
+            Button("네. 제출하겠습니다", role: .destructive) {
                 quiz.scores[scoreIdx].submit()
                 isSubmitted.toggle()
-            }, label: {
-                Text("제출")
-            })
-            Button("취소", role: .cancel) {}
+            }
+            Button("아니오", role: .cancel) {}
         }
         .fullScreenCover(isPresented: $isSubmitted, content: {
             ScoreDetailView(scoreIdx: scoreIdx).environmentObject(quiz)
