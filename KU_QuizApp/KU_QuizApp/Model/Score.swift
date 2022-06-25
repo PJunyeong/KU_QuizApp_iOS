@@ -18,8 +18,9 @@ struct Score: Identifiable, Codable {
     let questionCnt: Int
     var questions: [Question]? = nil
     var answers: [Int] = []
+    var submittedScore = 0
     
-    var submittedScore: Int {
+    mutating func rateScore() -> Void {
         if questions == nil {
             let questions: [Question] = Bundle.main.decode("questions.json")
             let questionsFiltered = questions.filter{$0.testNum == testNum!}.sorted(by: {$0.number < $1.number})
@@ -27,18 +28,18 @@ struct Score: Identifiable, Codable {
             
             var total = 0
             guard rightAnswers.count == questionCnt else {
-                return total
+                return
             }
             for idx in 0..<questionCnt {
                 if rightAnswers[idx] == answers[idx] {
                     total += 1
                 }
             }
-            return total
+            submittedScore = total
         } else {
             var total = 0
             guard let questions = questions else {
-                return total
+                return
             }
             
             for idx in 0..<questionCnt {
@@ -46,7 +47,7 @@ struct Score: Identifiable, Codable {
                     total += 1
                 }
             }
-            return total
+            submittedScore = total
         }
     }
     
@@ -65,6 +66,7 @@ struct Score: Identifiable, Codable {
     mutating func submit() -> Void {
         self.date = Date()
         self.isSubmitted = true
+        rateScore()
     }
     
     var isAllChecked: Bool {
@@ -128,17 +130,17 @@ struct Score: Identifiable, Codable {
         if isTest {
             // 기출별 문제
             if percent >= 90.0 {
-                return "1급 합격입니다! 미리 합격 축하드립니다"
+                return "1급 합격입니다!\n미리 합격 축하드립니다"
             } else if percent >= 80.0 {
-                return "2급 합격입니다! 문제 없이 안정권이군요!"
+                return "2급 합격입니다!\n문제 없이 안정권이군요!"
             } else if percent >= 60.0 {
                 return "3급 합격입니다!"
             } else if percent >= 50.0 {
-                return "불합격입니다! 조금만 더 노력해볼까요?"
+                return "불합격입니다!\n조금만 더 노력해볼까요?"
             } else if percent >= 40.0 {
-                return "불합격입니다! 오답노트로 공부해보세요!"
+                return "불합격입니다!\n오답노트로 공부해보세요!"
             } else {
-                return "불합격입니다! 모르는 문제는 북마크로 표시해보세요!"
+                return "불합격입니다!\n모르는 문제는 북마크로 표시해보세요!"
             }
         } else {
             // 유형별 문제

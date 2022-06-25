@@ -21,6 +21,7 @@ struct ScoreDetailView: View {
             Text(quiz.scores[scoreIdx].scoreMessage)
                 .font(.headline)
                 .fontWeight(.bold)
+                .multilineTextAlignment(.center)
         }
     }
 }
