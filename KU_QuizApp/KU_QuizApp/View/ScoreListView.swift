@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ScoreListView: View {
     @EnvironmentObject var quiz: Quiz
+    @State private var isAnswerShown: Bool = false
+    @State private var scoreIdx: Int = 0
     @Binding var orderSelected: Int
     let orderRange: [Int]
     let isTest: Bool
@@ -23,7 +25,14 @@ struct ScoreListView: View {
                         ForEach(dateSections[key] ?? [], id:\.self) { value in
                             Section {
                                 ForEach(quiz.scoreDateSection(isTest: isTest, sectionDate: key, section: value)) { score in
-                                    ScoreLabelView(score: score, orderSelected: orderSelected)
+                                    Button(action: {
+                                        isAnswerShown.toggle()
+                                    }, label: {
+                                        ScoreLabelView(score: score, orderSelected: orderSelected)
+                                    })
+                                    .fullScreenCover(isPresented: $isAnswerShown, content: {
+                                        ScoreDetailView(scoreIdx: quiz.scoreIdx(score: score)).environmentObject(quiz)
+                                    })
                                 }
                                 .onDelete {
                                     scoreDateDelete(at: $0, in: key, in: value)
@@ -34,6 +43,7 @@ struct ScoreListView: View {
                         }
                     }
                 }
+                .id(isTest)
                 .listStyle(.sidebar)
                 
             } else {
@@ -41,7 +51,14 @@ struct ScoreListView: View {
                     ForEach(quiz.scoreSections(orderSelected: orderSelected, isTest: isTest), id:\.self) { section in
                         Section {
                             ForEach(quiz.scoreSection(orderSelected: orderSelected, isTest: isTest, section: section)) { score in
-                                ScoreLabelView(score: score, orderSelected: orderSelected)
+                                Button(action: {
+                                    isAnswerShown.toggle()
+                                }, label: {
+                                    ScoreLabelView(score: score, orderSelected: orderSelected)
+                                })
+                                .fullScreenCover(isPresented: $isAnswerShown, content: {
+                                    ScoreDetailView(scoreIdx: quiz.scoreIdx(score: score)).environmentObject(quiz)
+                                })
                             }
                             .onDelete {
                                 scoreDelete(at: $0, in: section)
@@ -51,6 +68,7 @@ struct ScoreListView: View {
                         }
                     }
                 }
+                .id(isTest)
                 .listStyle(.sidebar)
             }
         }

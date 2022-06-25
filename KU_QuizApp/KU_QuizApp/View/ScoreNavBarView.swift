@@ -19,7 +19,7 @@ struct ScoreNavBarView: View {
                     .font(.headline)
             })
             Spacer()
-            Text(questionTitle)
+            Text(questionTitle + " 채점 결과")
                 .font(.headline)
                 .opacity(isAnimated ? 1 : 0)
                 .offset(x: 0, y: isAnimated ? 0 : -25)

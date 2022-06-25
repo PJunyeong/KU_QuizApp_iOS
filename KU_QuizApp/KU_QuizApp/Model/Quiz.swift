@@ -159,6 +159,10 @@ class Quiz: Identifiable, ObservableObject {
         return scores.count - 1
     }
     
+    func scoreIdx(score: Score) -> Int {
+        return scores.firstIndex(where: {$0.id == score.id}) ?? 0
+    }
+    
     private func randomQuestions(type: Int, questionCnt: Int) -> [Question] {
         let questionsFiltered = questions.filter{$0.type == type}
         let questions = Array(Array(Set(questionsFiltered)).prefix(questionCnt))

@@ -23,7 +23,17 @@ struct ScoreGridView: View {
                     let question = quiz.fetchQuestion(testNum: quiz.scores[scoreIdx].testNum, scoreIdx: scoreIdx, questionIdx: idx)
                     if scoreSelected && quiz.scores[scoreIdx].answers[idx] != question.answer {
                         // 틀린 문제만 보기
-                        Text("\(idx + 1)")
+                        Button(action: {
+                            questionNum = Double(idx + 1)
+                            selectedQuestion = idx
+                            isAnswerShown.toggle()
+                        }, label: {
+                            Text("\(idx + 1)")
+                                .foregroundColor(.black)
+                        })
+                        .sheet(isPresented: $isAnswerShown, content: {
+                            AnswerView(scoreIdx: scoreIdx, questionNum: questionNum, selectedQuestion: selectedQuestion)
+                        })
                     } else if !scoreSelected {
                         Button(action: {
                             questionNum = Double(idx + 1)
@@ -31,6 +41,7 @@ struct ScoreGridView: View {
                             isAnswerShown.toggle()
                         }, label: {
                             Text("\(idx + 1)")
+                                .foregroundColor(.black)
                         })
                         .sheet(isPresented: $isAnswerShown, content: {
                             AnswerView(scoreIdx: scoreIdx, questionNum: questionNum, selectedQuestion: selectedQuestion)
