@@ -9,6 +9,8 @@ import SwiftUI
 
 struct NoteView: View {
     @EnvironmentObject var quiz: Quiz
+    @State var noteOrderSelected: Int = 0
+    @State var bookmarkOrderSelected: Int = 1
     @State private var isNote: Bool = true
     // 노트: 0: 많이 틀린 순서 1: 기출 회차별 2: 유형별 정렬
     // 북마크: 0: 기출 회차별 1: 유형별 정렬
@@ -16,10 +18,10 @@ struct NoteView: View {
         VStack {
             SegmentedPickerView(pickerName: "NoteViewPicker", tag1: "오답", tag2: "북마크", isTag1: $isNote)
             if isNote {
-                NoteListView(orderSelected: 0, orderRange: [0, 1, 2], isNote: true)
+                NoteListView(orderSelected: $noteOrderSelected, orderRange: [0, 1, 2], isNote: true)
                     .environmentObject(quiz)
             } else {
-                NoteListView(orderSelected: 1, orderRange: [1, 2], isNote: false)
+                NoteListView(orderSelected: $bookmarkOrderSelected, orderRange: [1, 2], isNote: false)
                     .environmentObject(quiz)
             }
         }

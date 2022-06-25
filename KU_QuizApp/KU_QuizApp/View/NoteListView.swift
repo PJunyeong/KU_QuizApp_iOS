@@ -9,14 +9,14 @@ import SwiftUI
 
 struct NoteListView: View {
     @EnvironmentObject var quiz: Quiz
-    @State var orderSelected: Int
-    @State var listID = 1
+    @Binding var orderSelected: Int
     let orderRange: [Int]
     let isNote: Bool
     // isNote true -> 오답노트 / false -> 북마크 리스트
     var body: some View {
         VStack {
-            SelectOrderView(orderRange: orderRange, orderSelected: $orderSelected)
+            SelectOrderView(reset: isNote ? 0 : 1, orderRange: orderRange, orderSelected: $orderSelected)
+                .environmentObject(quiz)
             if isNote {
                 List {
                     ForEach(quiz.noteSections(orderSelected: orderSelected), id:\.self) { section in
@@ -73,7 +73,7 @@ struct NoteListView: View {
 struct NoteListView_Previews: PreviewProvider {
     static let quiz = Quiz()
     static var previews: some View {
-        NoteListView(orderSelected: 0, orderRange: [0, 1, 2], isNote: true)
+        NoteListView(orderSelected: .constant(0), orderRange: [0, 1, 2], isNote: true)
             .environmentObject(quiz)
     }
 }

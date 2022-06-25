@@ -15,6 +15,7 @@
 		4A345059286701B30008AC8A /* ScoreListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A345058286701B30008AC8A /* ScoreListView.swift */; };
 		4A34505B28672D960008AC8A /* ScoreNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A34505A28672D960008AC8A /* ScoreNavBarView.swift */; };
 		4A34505F2867514D0008AC8A /* HeaderName2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A34505E2867514D0008AC8A /* HeaderName2.swift */; };
+		4A34506128675C270008AC8A /* ResetName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A34506028675C270008AC8A /* ResetName.swift */; };
 		4A4755692864BCB300AFC321 /* NoteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4755682864BCB200AFC321 /* NoteListView.swift */; };
 		4A47556B2864BCBD00AFC321 /* NoteLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A47556A2864BCBD00AFC321 /* NoteLabelView.swift */; };
 		4AA41B5F2861A4C4002D4D86 /* KU_QuizAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA41B5E2861A4C4002D4D86 /* KU_QuizAppApp.swift */; };
@@ -64,6 +65,7 @@
 		4A345058286701B30008AC8A /* ScoreListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreListView.swift; sourceTree = "<group>"; };
 		4A34505A28672D960008AC8A /* ScoreNavBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreNavBarView.swift; sourceTree = "<group>"; };
 		4A34505E2867514D0008AC8A /* HeaderName2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderName2.swift; sourceTree = "<group>"; };
+		4A34506028675C270008AC8A /* ResetName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetName.swift; sourceTree = "<group>"; };
 		4A4755682864BCB200AFC321 /* NoteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListView.swift; sourceTree = "<group>"; };
 		4A47556A2864BCBD00AFC321 /* NoteLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteLabelView.swift; sourceTree = "<group>"; };
 		4AA41B5B2861A4C4002D4D86 /* KU_QuizApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KU_QuizApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -220,6 +222,7 @@
 				4A345050286693840008AC8A /* OrderString.swift */,
 				4A3450562866F8DB0008AC8A /* HeaderName.swift */,
 				4A34505E2867514D0008AC8A /* HeaderName2.swift */,
+				4A34506028675C270008AC8A /* ResetName.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				4AA41B8C2861AE76002D4D86 /* DocumentDirectory.swift in Sources */,
 				4AA41B922861B2A9002D4D86 /* Tab.swift in Sources */,
 				4A34504F2866933C0008AC8A /* SelectOrderView.swift in Sources */,
+				4A34506128675C270008AC8A /* ResetName.swift in Sources */,
 				4AA41BB6286293C3002D4D86 /* QuestionSubView.swift in Sources */,
 				4AA41BAE28621378002D4D86 /* popToRootView.swift in Sources */,
 				4AD977D02862DADE005EC185 /* NumberImage.swift in Sources */,

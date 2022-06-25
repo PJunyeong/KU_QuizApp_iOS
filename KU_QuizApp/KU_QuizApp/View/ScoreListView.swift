@@ -9,14 +9,15 @@ import SwiftUI
 
 struct ScoreListView: View {
     @EnvironmentObject var quiz: Quiz
-    @State var orderSelected: Int
+    @Binding var orderSelected: Int
     let orderRange: [Int]
     let isTest: Bool
     var body: some View {
         VStack {
-            SelectOrderView(orderRange: orderRange, orderSelected: $orderSelected)
-            List {
-                if orderSelected == 3 {
+            SelectOrderView(reset: 2, orderRange: orderRange, orderSelected: $orderSelected)
+                .environmentObject(quiz)
+            if orderSelected == 3 {
+                List {
                     let dateSections = quiz.scoreDateSecions(isTest: isTest)
                     ForEach(Array(dateSections.keys), id:\.self) { key in
                         ForEach(dateSections[key] ?? [], id:\.self) { value in
@@ -32,7 +33,11 @@ struct ScoreListView: View {
                             }
                         }
                     }
-                } else {
+                }
+                .listStyle(.sidebar)
+                
+            } else {
+                List {
                     ForEach(quiz.scoreSections(orderSelected: orderSelected, isTest: isTest), id:\.self) { section in
                         Section {
                             ForEach(quiz.scoreSection(orderSelected: orderSelected, isTest: isTest, section: section)) { score in
@@ -46,9 +51,8 @@ struct ScoreListView: View {
                         }
                     }
                 }
+                .listStyle(.sidebar)
             }
-            .id(orderSelected)
-            .listStyle(.sidebar)
         }
     }
     
@@ -72,7 +76,7 @@ struct ScoreListView: View {
 struct ScoreListView_Previews: PreviewProvider {
     static let quiz = Quiz()
     static var previews: some View {
-        ScoreListView(orderSelected: 3, orderRange: [3, 4, 5], isTest: true)
+        ScoreListView(orderSelected: .constant(3), orderRange: [3, 4, 5], isTest: true)
             .environmentObject(quiz)
     }
 }

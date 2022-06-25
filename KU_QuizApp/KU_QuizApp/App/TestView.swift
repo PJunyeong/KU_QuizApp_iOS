@@ -16,21 +16,6 @@ struct TestView: View {
             TestListView(isTest: $isTest)
                 .environmentObject(quiz)
             Spacer()
-            Button(action: {
-                quiz.resetScore()
-            }, label: {
-                Text("RESET SCORE")
-            })
-            Button(action: {
-                quiz.resetBookmark()
-            }, label: {
-                Text("RESET BOOKMARK")
-            })
-            Button(action: {
-                quiz.resetNote()
-            }, label: {
-                Text("RESET NOTES")
-            })
         }
     }
 }

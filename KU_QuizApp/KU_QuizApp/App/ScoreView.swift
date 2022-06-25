@@ -9,13 +9,20 @@ import SwiftUI
 
 struct ScoreView: View {
     @EnvironmentObject var quiz: Quiz
+    @State var testScoreOrderSelected: Int = 3
+    @State var typeScoreOrderSelected: Int = 3
     @State private var isTest: Bool = true
     
     var body: some View {
         VStack {
             SegmentedPickerView(pickerName: "ScoreViewPicker", tag1: "기출별", tag2: "유형별", isTag1: $isTest)
-            ScoreListView(orderSelected: 3, orderRange: [3, 4, 5], isTest: isTest)
-                .environmentObject(quiz)
+            if isTest {
+                ScoreListView(orderSelected: $testScoreOrderSelected, orderRange: [3, 4, 5], isTest: true)
+                    .environmentObject(quiz)
+            } else {
+                ScoreListView(orderSelected: $typeScoreOrderSelected, orderRange: [3, 4, 5], isTest: false)
+                    .environmentObject(quiz)
+            }
         }
     }
 }

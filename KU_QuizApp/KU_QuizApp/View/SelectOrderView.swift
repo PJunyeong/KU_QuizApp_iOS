@@ -8,11 +8,27 @@
 import SwiftUI
 
 struct SelectOrderView: View {
+    @EnvironmentObject var quiz: Quiz
     @State var isOrderShown: Bool = false
+    let reset: Int
     let orderRange: [Int]
     @Binding var orderSelected: Int
     var body: some View {
         HStack {
+            Button(action: {
+                if reset == 0 {
+                    quiz.resetNote()
+                } else if reset == 1 {
+                    quiz.resetBookmark()
+                } else {
+                    quiz.resetScore()
+                }
+            }, label: {
+                Text(ResetName(reset:reset))
+                    .font(.headline)
+                    .fontWeight(.bold)
+                    .padding(.horizontal, 20)
+            })
             Spacer()
             Button(action: {
                 isOrderShown.toggle()
@@ -48,7 +64,9 @@ struct SelectOrderView: View {
 }
 
 struct SelectOrderView_Previews: PreviewProvider {
+    static let quiz = Quiz()
     static var previews: some View {
-        SelectOrderView(orderRange: [1, 2], orderSelected: .constant(1))
+        SelectOrderView(reset: 0, orderRange: [1, 2], orderSelected: .constant(1))
+            .environmentObject(quiz)
     }
 }
