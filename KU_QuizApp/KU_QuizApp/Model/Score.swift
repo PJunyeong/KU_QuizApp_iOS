@@ -10,7 +10,7 @@ import SwiftUI
 
 struct Score: Identifiable, Codable {
     let id = UUID()
-    let date: Date
+    var date: Date
     let isTest: Bool
     var isSubmitted: Bool = false
     let testNum: Int?
@@ -63,6 +63,7 @@ struct Score: Identifiable, Codable {
     }
     
     mutating func submit() -> Void {
+        self.date = Date()
         self.isSubmitted = true
     }
     
@@ -90,6 +91,11 @@ struct Score: Identifiable, Codable {
         }
         
         self.answers[questionIdx] = answer        
+    }
+    
+    var dateDiff: DateComponents {
+        let diff = Calendar.current.dateComponents([.month, .weekday, .day, .hour], from: date, to: Date())
+        return diff
     }
     
     var scoreCnt: String {

@@ -16,22 +16,50 @@ struct ScoreListView: View {
         VStack {
             SelectOrderView(orderRange: orderRange, orderSelected: $orderSelected)
             List {
-                ForEach(quiz.scoreSections(orderSelected: orderSelected, isTest: isTest) as! [Int], id:\.self) { section in
-                    Section {
-                        ForEach(quiz.scoreSection(orderSelected: orderSelected, isTest: isTest, section: section)) { score in
-                            ScoreLabelView(score: score, orderSelected: orderSelected)
+                if orderSelected == 3 {
+                    let dateSections = quiz.scoreDateSecions(isTest: isTest)
+                    ForEach(Array(dateSections.keys), id:\.self) { key in
+                        ForEach(dateSections[key] ?? [], id:\.self) { value in
+                            Section {
+                                ForEach(quiz.scoreDateSection(isTest: isTest, sectionDate: key, section: value)) { score in
+                                    ScoreLabelView(score: score, orderSelected: orderSelected)
+                                }
+                                .onDelete {
+                                    scoreDateDelete(at: $0, in: key, in: value)
+                                }
+                            } header: {
+                                Text(key)
+                                Text("\(value)")
+                            }
                         }
-                        .onDelete {
-                            scoreDelete(at: $0, in: section)
+                    }
+                } else {
+                    ForEach(quiz.scoreSections(orderSelected: orderSelected, isTest: isTest), id:\.self) { section in
+                        Section {
+                            ForEach(quiz.scoreSection(orderSelected: orderSelected, isTest: isTest, section: section)) { score in
+                                ScoreLabelView(score: score, orderSelected: orderSelected)
+                            }
+                            .onDelete {
+                                scoreDelete(at: $0, in: section)
+                            }
+                        } header: {
+                            Text(HeaderName(orderSelected: orderSelected, Header: section))
                         }
-                    } header: {
-                        Text(HeaderName(orderSelected: orderSelected, Header: section))
                     }
                 }
             }
             .listStyle(.sidebar)
         }
     }
+    
+    func scoreDateDelete(at offset: IndexSet, in key: String, in value: Int) {
+        withAnimation {
+            let idx = offset[offset.startIndex]
+            let score = quiz.scoreDateSection(isTest: isTest, sectionDate: key, section: value)[idx]
+            quiz.scores.removeAll(where: {$0.id == score.id})
+        }
+    }
+    
     func scoreDelete(at offset: IndexSet, in section: Int) {
         withAnimation {
             let idx = offset[offset.startIndex]
@@ -44,7 +72,7 @@ struct ScoreListView: View {
 struct ScoreListView_Previews: PreviewProvider {
     static let quiz = Quiz()
     static var previews: some View {
-        ScoreListView(orderSelected: 4, orderRange: [3, 4, 5], isTest: true)
+        ScoreListView(orderSelected: 3, orderRange: [3, 4, 5], isTest: true)
             .environmentObject(quiz)
     }
 }

@@ -14,7 +14,7 @@ struct ScoreView: View {
     var body: some View {
         VStack {
             SegmentedPickerView(pickerName: "ScoreViewPicker", tag1: "기출별", tag2: "유형별", isTag1: $isTest)
-            ScoreListView(orderSelected: 4, orderRange: [3, 4, 5], isTest: isTest)
+            ScoreListView(orderSelected: 3, orderRange: [3, 4, 5], isTest: isTest)
                 .environmentObject(quiz)
         }
     }

@@ -185,30 +185,63 @@ class Quiz: Identifiable, ObservableObject {
         }
     }
     
-    func scoreSections(orderSelected: Int, isTest: Bool) -> [Any] {
-        let scoreSorted = scoreSorted(isTest: isTest, orderSelected: orderSelected)
-        if orderSelected == 3 {
-            let scoreSections = Array(Set(scoreSorted.map{$0.date}))
-            // TODO: 날짜 정렬 -> 일일 단위, 주 단위 등 정교화하기
-            return scoreSections.sorted(by: >)
+    func scoreDateSecions(isTest: Bool) -> [String:[Int]] {
+        let scoreSorted = scoreSorted(isTest: isTest, orderSelected: 3)
+        var sections = [String:[Int]]()
+        let monthSections = scoreSorted.filter{$0.dateDiff.month! > 0}.map{$0.dateDiff.month!}
+        if !monthSections.isEmpty {
+            sections["month"] = Array(Set(monthSections)).sorted(by: <)
+        }
+        
+        let weekSections = scoreSorted.filter{$0.dateDiff.month! == 0 && $0.dateDiff.weekday! > 0}.map{$0.dateDiff.weekday!}
+        if !weekSections.isEmpty {
+            sections["week"] = Array(Set(weekSections)).sorted(by: <)
+        }
+        
+        let daySections = scoreSorted.filter{$0.dateDiff.month! == 0 && $0.dateDiff.weekday! == 0 && $0.dateDiff.day! > 0}.map{$0.dateDiff.day!}
+        if !daySections.isEmpty {
+            sections["day"] = Array(Set(daySections)).sorted(by: <)
+        }
+        
+        let hourSections = scoreSorted.filter{$0.dateDiff.month! == 0 && $0.dateDiff.weekday! == 0 && $0.dateDiff.day! == 0}.map{$0.dateDiff.hour!}
+        if !hourSections.isEmpty {
+            sections["hour"] = Array(Set(hourSections)).sorted(by: <)
+        }
+        return sections
+    }
+    
+    func scoreDateSection(isTest: Bool, sectionDate: String, section: Int) -> [Score] {
+        let scoreSorted = scoreSorted(isTest: isTest, orderSelected: 3).filter{$0.isSubmitted == true}
+        
+        if sectionDate == "month" {
+            let monthSection = scoreSorted.filter{$0.dateDiff.month! == section}
+            return monthSection
+        } else if sectionDate == "week" {
+            let weekSection = scoreSorted.filter{$0.dateDiff.weekday! == section}
+            return weekSection
+        } else if sectionDate == "day" {
+            let daySection = scoreSorted.filter{$0.dateDiff.day! == section}
+            return daySection
         } else {
-            let scoreSections = Array(Set(scoreSorted.map{$0.submittedScore}))
-            if orderSelected == 4 {
-                return scoreSections.sorted(by: <)
-            } else {
-                return scoreSections.sorted(by: >)
-            }
+            let hourSection = scoreSorted.filter{$0.dateDiff.hour! == section}
+            return hourSection
         }
     }
     
-    func scoreSection(orderSelected: Int, isTest: Bool, section: Any) -> [Score] {
+    
+    func scoreSections(orderSelected: Int, isTest: Bool) -> [Int] {
         let scoreSorted = scoreSorted(isTest: isTest, orderSelected: orderSelected)
-        if orderSelected == 3 {
-            return scoreSorted.filter{$0.date == section as! Date}
-            // TODO: 날짜 정렬 조건 -> 추후
+        let scoreSections = Array(Set(scoreSorted.map{$0.submittedScore}))
+        if orderSelected == 4 {
+            return scoreSections.sorted(by: <)
         } else {
-            return scoreSorted.filter{$0.submittedScore == section as! Int}
+            return scoreSections.sorted(by: >)
         }
+    }
+    
+    func scoreSection(orderSelected: Int, isTest: Bool, section: Int) -> [Score] {
+        let scoreSorted = scoreSorted(isTest: isTest, orderSelected: orderSelected)
+        return scoreSorted.filter{$0.submittedScore == section}
     }
     
     func questionDescript(type: Int) -> String {
