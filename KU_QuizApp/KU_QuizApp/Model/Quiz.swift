@@ -238,18 +238,57 @@ class Quiz: Identifiable, ObservableObject {
         bookmarks = []
     }
     
-    func bookmarkSorted() -> [Bookmark] {
+    func bookmarkSorted(orderSelected: Int) -> [Bookmark] {
         // orderSelected -> 기출별, 유형별 정렬 리턴
-        let bookmarks = bookmarks.sorted(by: {
-            if $0.testNum < $1.testNum {
-                return true
-            } else if $0.testNum == $1.testNum && $0.number < $1.number {
-                return true
-            } else {
-                return false
-            }
-        })
-        return bookmarks
+        
+        if orderSelected == 1 {
+            // 기출 회차별
+            let bookmarks = bookmarks.sorted(by: {
+                if $0.testNum < $1.testNum {
+                    return true
+                } else if $0.testNum == $1.testNum && $0.number < $1.number {
+                    return true
+                } else {
+                    return false
+                }
+            })
+            return bookmarks
+        } else {
+            // 유형별
+            let bookmarks = bookmarks.sorted(by: {
+                if $0.type < $1.type {
+                    return true
+                } else if $0.type == $1.type && $0.testNum < $1.testNum {
+                    return true
+                } else if $0.type == $1.type && $0.testNum == $1.testNum && $0.number < $1.number {
+                    return true
+                } else {
+                    return false
+                }
+            })
+            return bookmarks
+        }
+    }
+    
+    func bookmarkSections(orderSelected: Int) -> [Int] {
+        let bookmarkSorted = bookmarkSorted(orderSelected: orderSelected)
+        var bookmarkSections = [Int]()
+        if orderSelected == 1 {
+            bookmarkSections = Array(Set(bookmarkSorted.map{$0.testNum}))
+            return bookmarkSections.sorted(by: <)
+        } else {
+            bookmarkSections = Array(Set(bookmarkSorted.map{$0.type}))
+            return bookmarkSections.sorted(by: <)
+        }
+    }
+    
+    func bookmarkSection(orderSelected: Int, section: Int) -> [Bookmark] {
+        let bookmarkSorted = bookmarkSorted(orderSelected: orderSelected)
+        if orderSelected == 1 {
+            return bookmarkSorted.filter{$0.testNum == section}
+        } else {
+            return bookmarkSorted.filter{$0.type == section}
+        }
     }
     
     func fetchQuestions(testNum: Int?, scoreIdx: Int) -> [Question] {
