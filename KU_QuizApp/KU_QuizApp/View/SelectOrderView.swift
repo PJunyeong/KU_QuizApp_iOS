@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NoteOrderView: View {
+struct SelectOrderView: View {
     @State var isOrderShown: Bool = false
     let orderRange: [Int]
     @Binding var orderSelected: Int
@@ -23,7 +23,7 @@ struct NoteOrderView: View {
                     .padding(.horizontal, 20)
             })
             .confirmationDialog(
-                "오답 정렬 기준을 선택하세요",
+                "정렬 기준을 선택하세요",
                 isPresented: $isOrderShown,
                 titleVisibility: .visible
             ) {
@@ -47,8 +47,8 @@ struct NoteOrderView: View {
     }
 }
 
-struct NoteOrderView_Previews: PreviewProvider {
+struct SelectOrderView_Previews: PreviewProvider {
     static var previews: some View {
-        NoteOrderView(orderRange: [1, 2], orderSelected: .constant(1))
+        SelectOrderView(orderRange: [1, 2], orderSelected: .constant(1))
     }
 }

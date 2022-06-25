@@ -15,7 +15,7 @@ struct QuestionSubView: View {
     var body: some View {
         VStack {
             let question = quiz.fetchQuestion(testNum: quiz.scores[scoreIdx].testNum, scoreIdx: scoreIdx, questionIdx: questionIdx)
-            InfoLabelView(testNum: question.testNum, questionNum: question.number, isBookmarked: quiz.isBookmarked(testNum: question.testNum, number: question.number),showInfo: $showInfo)
+            InfoLabelView(testNum: question.testNum, questionNum: question.number, type: question.type, isBookmarked: quiz.isBookmarked(testNum: question.testNum, number: question.number, type: question.type),showInfo: $showInfo)
             ScrollView(showsIndicators: false) {
                 QuestionDescriptView(testNum: question.testNum, number: question.number, questionDescript: quiz.questionDescript(type: question.type), isTest: quiz.scores[scoreIdx].isTest)
                 QuestionDetailView(question: question, showInfo: $showInfo)

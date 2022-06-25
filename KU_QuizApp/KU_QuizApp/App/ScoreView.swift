@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct ScoreView: View {
+    @EnvironmentObject var quiz: Quiz
+    @State private var isTest: Bool = true
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            SegmentedPickerView(pickerName: "ScoreViewPicker", tag1: "기출별", tag2: "유형별", isTag1: $isTest)
+        }
     }
 }
 

@@ -15,7 +15,25 @@ struct NoteListView: View {
     // isNote true -> 오답노트 / false -> 북마크 리스트
     var body: some View {
         VStack {
-            NoteOrderView(orderRange: orderRange, orderSelected: $orderSelected)
+            SelectOrderView(orderRange: orderRange, orderSelected: $orderSelected)
+            List {
+                ForEach(quiz.noteSections(orderSelected: orderSelected), id:\.self) { section in
+                    Section {
+                        ForEach(quiz.noteSection(orderSelected: orderSelected, section: section)) { note in
+                            NoteLabelView(note: note, orderSelected: orderSelected)
+                        }
+                        .onDelete(perform: Notedelete)
+                    } header: {
+                        Text(NoteHeader(orderSelected: orderSelected, Header: section))
+                    }
+                }
+            }
+            .listStyle(.sidebar)
+        }
+    }
+    func Notedelete(offset: IndexSet) {
+        withAnimation {
+            quiz.notes.remove(atOffsets: offset)
         }
     }
 }

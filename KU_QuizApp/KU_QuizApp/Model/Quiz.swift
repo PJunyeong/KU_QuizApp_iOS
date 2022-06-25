@@ -11,13 +11,13 @@ class Quiz: Identifiable, ObservableObject {
     let questions: [Question] = Bundle.main.decode("questions.json")
     let questionBox: [QuestionBox] = Bundle.main.decode("questionBox.json")
     // 문제 정보 -> JSON 파싱
-    @Published var bookmarks: [Bookmark] = [Bookmark(testNum: 10, number: 1)] {
+    @Published var bookmarks: [Bookmark] = [Bookmark(testNum: 10, number: 1, type: 1)] {
         didSet {
             bookmarkSave()
     ()
         }
     }
-    @Published var notes: [Note] = [Note(testNum: 10, number: 1, type: 1)] {
+    @Published var notes: [Note] = [Note(testNum: 10, number: 1, type: 1, wrongCnt: 3), Note(testNum: 10, number: 2, type: 1, wrongCnt: 3), Note(testNum: 10, number: 3, type: 1), Note(testNum: 10, number: 4, type: 1), Note(testNum: 30, number: 5, type: 1), Note(testNum: 20, number: 1, type: 1)] {
         didSet {
             noteSave()
         }
@@ -165,6 +165,26 @@ class Quiz: Identifiable, ObservableObject {
         return questions
     }
     
+    func scoreSorted(isTest: Bool, orderSelected:Int) -> [Score] {
+        var scoreSorted = [Score]()
+        if isTest {
+            scoreSorted = scores.filter{$0.isTest && $0.isSubmitted}
+        } else {
+            scoreSorted = scores.filter{!$0.isTest && $0.isSubmitted}
+        }
+        
+        if orderSelected == 3 {
+            // 최신순 리턴
+            return scoreSorted.sorted(by: {$0.date < $1.date})
+        } else if orderSelected == 4 {
+            // 낮은 점수순 리턴
+            return scoreSorted.sorted(by: {$0.submittedScore < $1.submittedScore})
+        } else {
+            // 높은 점수순 리턴
+            return scoreSorted.sorted(by: {$0.submittedScore > $1.submittedScore})
+        }
+    }
+    
     func questionDescript(type: Int) -> String {
         switch type {
         case 1: return "다음 한자의 독음이 바른 것은?"
@@ -177,36 +197,36 @@ class Quiz: Identifiable, ObservableObject {
         }
     }
     
-    func isBookmarked(testNum: Int, number: Int) -> Bool {
-        if bookmarks.filter({$0.testNum == testNum && $0.number == number}).isEmpty {
+    func isBookmarked(testNum: Int, number: Int, type: Int) -> Bool {
+        if bookmarks.filter({$0.testNum == testNum && $0.number == number && $0.type == type}).isEmpty {
             return false
         } else {
             return true
         }
     }
     
-    func toggleBookmark(testNum: Int, number: Int) -> Void {
-        if isBookmarked(testNum: testNum, number: number) {
-            removeBookmark(testNum: testNum, number: number)
+    func toggleBookmark(testNum: Int, number: Int, type: Int) -> Void {
+        if isBookmarked(testNum: testNum, number: number, type: type) {
+            removeBookmark(testNum: testNum, number: number, type: type)
             print("removeBookmark")
         } else {
-            setBookmark(testNum: testNum, number: number)
+            setBookmark(testNum: testNum, number: number, type: type)
             print("setBookmark")
         }
     }
     
-    func setBookmark(testNum: Int, number: Int) -> Void {
-        if !isBookmarked(testNum: testNum, number: number) {
-            let bookmark = Bookmark(testNum: testNum, number: number)
+    func setBookmark(testNum: Int, number: Int, type: Int) -> Void {
+        if !isBookmarked(testNum: testNum, number: number, type: type) {
+            let bookmark = Bookmark(testNum: testNum, number: number, type: type)
             bookmarks.append(bookmark)
         }
     }
     
-    func removeBookmark(testNum: Int, number: Int) -> Void {
-        if isBookmarked(testNum: testNum, number: number) {
+    func removeBookmark(testNum: Int, number: Int, type: Int) -> Void {
+        if isBookmarked(testNum: testNum, number: number, type: type) {
             for idx in 0..<bookmarks.count {
                 let bookmark = bookmarks[idx]
-                if bookmark.testNum == testNum && bookmark.number == number {
+                if bookmark.testNum == testNum && bookmark.number == number && bookmark.type == type {
                     bookmarks.remove(at: idx)
                     return
                 }
@@ -219,6 +239,7 @@ class Quiz: Identifiable, ObservableObject {
     }
     
     func bookmarkSorted() -> [Bookmark] {
+        // orderSelected -> 기출별, 유형별 정렬 리턴
         let bookmarks = bookmarks.sorted(by: {
             if $0.testNum < $1.testNum {
                 return true
@@ -286,6 +307,32 @@ class Quiz: Identifiable, ObservableObject {
                 }
             })
             return notes
+        }
+    }
+    
+    func noteSections(orderSelected: Int) -> [Int] {
+        let noteSorted = noteSorted(orderSelected: orderSelected)
+        var noteSections = [Int]()
+        if orderSelected == 0 {
+            noteSections = Array(Set(noteSorted.map{$0.wrongCnt}))
+            return noteSections.sorted(by: >)
+        } else if orderSelected == 1 {
+            noteSections = Array(Set(noteSorted.map{$0.testNum}))
+            return noteSections.sorted(by: <)
+        } else {
+            noteSections = Array(Set(noteSorted.map{$0.type}))
+            return noteSections.sorted(by: <)
+        }
+    }
+    
+    func noteSection(orderSelected: Int, section: Int) -> [Note] {
+        let noteSorted = noteSorted(orderSelected: orderSelected)
+        if orderSelected == 0 {
+            return noteSorted.filter{$0.wrongCnt == section}
+        } else if orderSelected == 1 {
+            return noteSorted.filter{$0.testNum == section}
+        } else {
+            return noteSorted.filter{$0.type == section}
         }
     }
 }

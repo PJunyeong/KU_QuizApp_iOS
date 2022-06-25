@@ -11,5 +11,6 @@ struct Bookmark: Identifiable, Codable {
     let id = UUID()
     let testNum: Int
     let number: Int
+    let type: Int
 }
 
