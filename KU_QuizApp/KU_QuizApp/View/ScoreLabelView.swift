@@ -17,7 +17,7 @@ struct ScoreLabelView: View {
                 Text("\(score.questionTitle)")
             } else {
                 Text("\(score.questionTitle)")
-                Text("\(score.date)")
+                Text("\(score.dateHeader)")
             }
         }
     }

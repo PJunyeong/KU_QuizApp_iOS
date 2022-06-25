@@ -28,8 +28,7 @@ struct ScoreListView: View {
                                     scoreDateDelete(at: $0, in: key, in: value)
                                 }
                             } header: {
-                                Text(key)
-                                Text("\(value)")
+                                Text(HeaderName2(key: key, value: value))
                             }
                         }
                     }
@@ -48,6 +47,7 @@ struct ScoreListView: View {
                     }
                 }
             }
+            .id(orderSelected)
             .listStyle(.sidebar)
         }
     }

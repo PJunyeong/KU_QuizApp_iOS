@@ -10,6 +10,7 @@ import SwiftUI
 struct NoteListView: View {
     @EnvironmentObject var quiz: Quiz
     @State var orderSelected: Int
+    @State var listID = 1
     let orderRange: [Int]
     let isNote: Bool
     // isNote true -> 오답노트 / false -> 북마크 리스트
@@ -31,6 +32,7 @@ struct NoteListView: View {
                         }
                     }
                 }
+                .id(orderSelected)
                 .listStyle(.sidebar)
             } else {
                 List {
@@ -47,6 +49,7 @@ struct NoteListView: View {
                         }
                     }
                 }
+                .id(orderSelected)
                 .listStyle(.sidebar)
             }
         }

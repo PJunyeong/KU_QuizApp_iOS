@@ -98,6 +98,18 @@ struct Score: Identifiable, Codable {
         return diff
     }
     
+    var dateHeader: String {
+        if dateDiff.month! > 0 {
+            return HeaderName2(key: "month", value: dateDiff.month!)
+        } else if dateDiff.weekday! > 0 {
+            return HeaderName2(key: "week", value: dateDiff.weekday!)
+        } else if dateDiff.day! > 0 {
+            return HeaderName2(key: "day", value: dateDiff.day!)
+        } else {
+            return HeaderName2(key: "hour", value: dateDiff.hour!)
+        }
+    }
+    
     var scoreCnt: String {
         guard isSubmitted else {
             return ""
