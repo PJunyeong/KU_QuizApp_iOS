@@ -24,6 +24,7 @@
 		4A34506D286780370008AC8A /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A34506C286780370008AC8A /* SettingView.swift */; };
 		4A34506F286780440008AC8A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A34506E286780440008AC8A /* OnboardingView.swift */; };
 		4A345071286785A50008AC8A /* SliderTabIdx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A345070286785A50008AC8A /* SliderTabIdx.swift */; };
+		4A34507328678CF40008AC8A /* SelectedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A34507228678CF40008AC8A /* SelectedItem.swift */; };
 		4A4755692864BCB300AFC321 /* NoteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4755682864BCB200AFC321 /* NoteListView.swift */; };
 		4A47556B2864BCBD00AFC321 /* NoteLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A47556A2864BCBD00AFC321 /* NoteLabelView.swift */; };
 		4AA41B5F2861A4C4002D4D86 /* KU_QuizAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA41B5E2861A4C4002D4D86 /* KU_QuizAppApp.swift */; };
@@ -82,6 +83,7 @@
 		4A34506C286780370008AC8A /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		4A34506E286780440008AC8A /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		4A345070286785A50008AC8A /* SliderTabIdx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderTabIdx.swift; sourceTree = "<group>"; };
+		4A34507228678CF40008AC8A /* SelectedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedItem.swift; sourceTree = "<group>"; };
 		4A4755682864BCB200AFC321 /* NoteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListView.swift; sourceTree = "<group>"; };
 		4A47556A2864BCBD00AFC321 /* NoteLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteLabelView.swift; sourceTree = "<group>"; };
 		4AA41B5B2861A4C4002D4D86 /* KU_QuizApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KU_QuizApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,6 +187,7 @@
 				4AA41B912861B2A9002D4D86 /* Tab.swift */,
 				4AD977CB2862C887005EC185 /* Choice.swift */,
 				4A345070286785A50008AC8A /* SliderTabIdx.swift */,
+				4A34507228678CF40008AC8A /* SelectedItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AA41BA828620805002D4D86 /* QuestionNavBarView.swift in Sources */,
+				4A34507328678CF40008AC8A /* SelectedItem.swift in Sources */,
 				4AA41B7B2861A622002D4D86 /* Quiz.swift in Sources */,
 				4AA41B792861A5E9002D4D86 /* Score.swift in Sources */,
 				4AA41B8C2861AE76002D4D86 /* DocumentDirectory.swift in Sources */,

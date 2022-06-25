@@ -9,9 +9,7 @@ import SwiftUI
 
 struct NoteListView: View {
     @EnvironmentObject var quiz: Quiz
-    @State private var isAnswerShown: Bool = false
-    @State private var testNum = 10
-    @State private var number = 1
+    @State private var selectedItem: SelectedItem? = nil
     @Binding var orderSelected: Int
     let orderRange: [Int]
     let isNote: Bool
@@ -26,16 +24,14 @@ struct NoteListView: View {
                         Section {
                             ForEach(quiz.noteSection(orderSelected: orderSelected, section: section)) { note in
                                 Button(action: {
-                                    testNum = note.testNum
-                                    number = note.number
-                                    isAnswerShown.toggle()
+                                    selectedItem = SelectedItem(testNum: note.testNum, number: note.number)
                                 }, label: {
                                     NoteLabelView(note: note, orderSelected: orderSelected)
                                 })
-                                .sheet(isPresented: $isAnswerShown, content: {
-                                    AnswerSubView(testNum: testNum, number: number, answer: 0)
+                                .sheet(item: $selectedItem) { item in
+                                    AnswerSubView(testNum: item.testNum, number: item.number, answer: 0)
                                         .environmentObject(quiz)
-                                })
+                                }
                             }
                             .onDelete {
                                 noteDelete(at: $0, in: section)
@@ -54,16 +50,14 @@ struct NoteListView: View {
                             ForEach(quiz.bookmarkSection(orderSelected: orderSelected, section: section)) { bookmark in
                                 
                                 Button(action: {
-                                    testNum = bookmark.testNum
-                                    number = bookmark.number
-                                    isAnswerShown.toggle()
+                                    selectedItem = SelectedItem(testNum: bookmark.testNum, number: bookmark.number)
                                 }, label: {
                                     BookmarkLabelView(bookmark: bookmark, orderSelected: orderSelected)
                                 })
-                                .sheet(isPresented: $isAnswerShown, content: {
-                                    AnswerSubView(testNum: testNum, number: number, answer: 0)
+                                .sheet(item: $selectedItem) { item in
+                                    AnswerSubView(testNum: item.testNum, number: item.number, answer: 0)
                                         .environmentObject(quiz)
-                                })
+                                }
                             }
                             .onDelete {
                                 bookmarkDelete(at: $0, in: section)
