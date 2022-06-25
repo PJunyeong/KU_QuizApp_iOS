@@ -10,7 +10,7 @@ import SwiftUI
 struct ScoreListView: View {
     @EnvironmentObject var quiz: Quiz
     @State private var isAnswerShown: Bool = false
-    @State private var scoreIdx: Int = 0
+    @State private var scoreIdx: Int? = nil
     @Binding var orderSelected: Int
     let orderRange: [Int]
     let isTest: Bool

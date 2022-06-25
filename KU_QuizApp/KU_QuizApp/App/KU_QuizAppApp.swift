@@ -9,12 +9,17 @@ import SwiftUI
 
 @main
 struct KU_QuizAppApp: App {
+    @AppStorage("isOnboarding") var isOnboarding: Bool = false
     @StateObject var quiz: Quiz = Quiz()
     var body: some Scene {
         WindowGroup {
-            MainView()
-                .environmentObject(quiz)
-                .onAppear(perform: quiz.load)
+            if isOnboarding {
+                OnboardingView()
+            } else {
+                MainView()
+                    .environmentObject(quiz)
+                    .onAppear(perform: quiz.load)
+            }
         }
     }
 }
