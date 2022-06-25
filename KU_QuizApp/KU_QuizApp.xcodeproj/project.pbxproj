@@ -16,7 +16,11 @@
 		4A34505B28672D960008AC8A /* ScoreNavBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A34505A28672D960008AC8A /* ScoreNavBarView.swift */; };
 		4A34505F2867514D0008AC8A /* HeaderName2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A34505E2867514D0008AC8A /* HeaderName2.swift */; };
 		4A34506128675C270008AC8A /* ResetName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A34506028675C270008AC8A /* ResetName.swift */; };
-		4A34506328675FE10008AC8A /* AnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A34506228675FE10008AC8A /* AnswerView.swift */; };
+		4A34506328675FE10008AC8A /* AnswerSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A34506228675FE10008AC8A /* AnswerSubView.swift */; };
+		4A345065286769DA0008AC8A /* ScoreGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A345064286769DA0008AC8A /* ScoreGridView.swift */; };
+		4A34506728676BB00008AC8A /* ScoreGridLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A34506628676BB00008AC8A /* ScoreGridLabelView.swift */; };
+		4A34506928676EFE0008AC8A /* ScoreSelectOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A34506828676EFE0008AC8A /* ScoreSelectOrderView.swift */; };
+		4A34506B286773470008AC8A /* AnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A34506A286773470008AC8A /* AnswerView.swift */; };
 		4A4755692864BCB300AFC321 /* NoteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4755682864BCB200AFC321 /* NoteListView.swift */; };
 		4A47556B2864BCBD00AFC321 /* NoteLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A47556A2864BCBD00AFC321 /* NoteLabelView.swift */; };
 		4AA41B5F2861A4C4002D4D86 /* KU_QuizAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA41B5E2861A4C4002D4D86 /* KU_QuizAppApp.swift */; };
@@ -67,7 +71,11 @@
 		4A34505A28672D960008AC8A /* ScoreNavBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreNavBarView.swift; sourceTree = "<group>"; };
 		4A34505E2867514D0008AC8A /* HeaderName2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderName2.swift; sourceTree = "<group>"; };
 		4A34506028675C270008AC8A /* ResetName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetName.swift; sourceTree = "<group>"; };
-		4A34506228675FE10008AC8A /* AnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerView.swift; sourceTree = "<group>"; };
+		4A34506228675FE10008AC8A /* AnswerSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerSubView.swift; sourceTree = "<group>"; };
+		4A345064286769DA0008AC8A /* ScoreGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreGridView.swift; sourceTree = "<group>"; };
+		4A34506628676BB00008AC8A /* ScoreGridLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreGridLabelView.swift; sourceTree = "<group>"; };
+		4A34506828676EFE0008AC8A /* ScoreSelectOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreSelectOrderView.swift; sourceTree = "<group>"; };
+		4A34506A286773470008AC8A /* AnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerView.swift; sourceTree = "<group>"; };
 		4A4755682864BCB200AFC321 /* NoteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListView.swift; sourceTree = "<group>"; };
 		4A47556A2864BCBD00AFC321 /* NoteLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteLabelView.swift; sourceTree = "<group>"; };
 		4AA41B5B2861A4C4002D4D86 /* KU_QuizApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KU_QuizApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,7 +204,11 @@
 				4A3450542866F3820008AC8A /* ScoreLabelView.swift */,
 				4A345058286701B30008AC8A /* ScoreListView.swift */,
 				4A34505A28672D960008AC8A /* ScoreNavBarView.swift */,
-				4A34506228675FE10008AC8A /* AnswerView.swift */,
+				4A34506228675FE10008AC8A /* AnswerSubView.swift */,
+				4A345064286769DA0008AC8A /* ScoreGridView.swift */,
+				4A34506628676BB00008AC8A /* ScoreGridLabelView.swift */,
+				4A34506828676EFE0008AC8A /* ScoreSelectOrderView.swift */,
+				4A34506A286773470008AC8A /* AnswerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -337,7 +349,7 @@
 				4AA41BB82862946E002D4D86 /* QuestionBoxView.swift in Sources */,
 				4AA41BAC286209FA002D4D86 /* SafeAreaTop.swift in Sources */,
 				4A3450532866C7530008AC8A /* BookmarkLabelView.swift in Sources */,
-				4A34506328675FE10008AC8A /* AnswerView.swift in Sources */,
+				4A34506328675FE10008AC8A /* AnswerSubView.swift in Sources */,
 				4AA41BB028621BAD002D4D86 /* ScoreDetailView.swift in Sources */,
 				4AA41B9E2861BD90002D4D86 /* TestListView.swift in Sources */,
 				4AA41B732861A5A4002D4D86 /* QuestionBox.swift in Sources */,
@@ -353,13 +365,17 @@
 				4AA41B9C2861B842002D4D86 /* SegmentedPickerView.swift in Sources */,
 				4AA41B9A2861B516002D4D86 /* TestLabelView.swift in Sources */,
 				4AD977CC2862C887005EC185 /* Choice.swift in Sources */,
+				4A34506928676EFE0008AC8A /* ScoreSelectOrderView.swift in Sources */,
 				4AA41B772861A5D4002D4D86 /* Note.swift in Sources */,
 				4A47556B2864BCBD00AFC321 /* NoteLabelView.swift in Sources */,
 				4AA41B942861B415002D4D86 /* TestView.swift in Sources */,
+				4A34506B286773470008AC8A /* AnswerView.swift in Sources */,
 				4AA41BBC286297C9002D4D86 /* ChoiceListView.swift in Sources */,
+				4A34506728676BB00008AC8A /* ScoreGridLabelView.swift in Sources */,
 				4AA41B962861B41B002D4D86 /* NoteView.swift in Sources */,
 				4AA41B892861ADC5002D4D86 /* CodableBundleExtension.swift in Sources */,
 				4AA41B982861B420002D4D86 /* ScoreView.swift in Sources */,
+				4A345065286769DA0008AC8A /* ScoreGridView.swift in Sources */,
 				4A4755692864BCB300AFC321 /* NoteListView.swift in Sources */,
 				4A345051286693840008AC8A /* OrderString.swift in Sources */,
 				4AA41BA02861F8DD002D4D86 /* QuestionView.swift in Sources */,

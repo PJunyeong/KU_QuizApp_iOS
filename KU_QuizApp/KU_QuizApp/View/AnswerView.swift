@@ -9,29 +9,32 @@ import SwiftUI
 
 struct AnswerView: View {
     @EnvironmentObject var quiz: Quiz
-    let testNum: Int
-    let number: Int
-    @State var showInfo: Bool = true
+    let scoreIdx: Int
+    @State var questionNum: Double
+    @State var selectedQuestion: Int
     var body: some View {
-        VStack {
-            let question = quiz.questions.filter{$0.testNum == testNum && $0.number == number}[0]
-            InfoLabelView(testNum: question.testNum, questionNum: question.number, type: question.type, isBookmarked: quiz.isBookmarked(testNum: question.testNum, number: question.number, type: question.type),showInfo: $showInfo)
-            ScrollView(showsIndicators: false) {
-                QuestionDescriptView(testNum: question.testNum, number: question.number, questionDescript: quiz.questionDescript(type: question.type), isTest: false)
-                QuestionDetailView(question: question, showInfo: $showInfo)
-                QuestionBoxView(questionBox: quiz.fetchQuestionBox(testNum: question.testNum, order: question.order))
-                    .opacity(question.type == 6 ? 1 : 0)
-                ChoiceListView(question: question, scoreIdx: 0, questionIdx: 0, isAnswerShown: true, selectedNum: 0, showInfo: $showInfo)
-                    .environmentObject(quiz)
+        VStack(alignment: .center) {
+            SliderView(questionNum: $questionNum, selectedQuestion: $selectedQuestion, questionCnt: quiz.scores[scoreIdx].questionCnt)
+            TabView(selection: $selectedQuestion) {
+                ForEach(0..<quiz.scores[scoreIdx].questionCnt, id:\.self) { idx in
+                    QuestionSubView(scoreIdx: scoreIdx, questionIdx: idx)
+                        .tag(idx)
+                        .environmentObject(quiz)
+                }
+            }
+            .tabViewStyle(.page(indexDisplayMode: .never))
+            .onChange(of: selectedQuestion) {offset in
+                questionNum = Double(offset) + 1.0
             }
         }
+        .ignoresSafeArea(.all, edges: .top)
     }
 }
 
 struct AnswerView_Previews: PreviewProvider {
     static let quiz = Quiz()
     static var previews: some View {
-        AnswerView(testNum: 10, number: 1)
+        AnswerView(scoreIdx: 0, questionNum: 1.0, selectedQuestion: 0)
             .environmentObject(quiz)
     }
 }

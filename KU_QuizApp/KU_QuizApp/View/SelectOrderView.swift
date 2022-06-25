@@ -58,7 +58,6 @@ struct SelectOrderView: View {
                     }
                 }
             }
-            
         }
     }
 }
