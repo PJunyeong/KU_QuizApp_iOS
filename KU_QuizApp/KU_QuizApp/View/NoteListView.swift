@@ -9,6 +9,7 @@ import SwiftUI
 
 struct NoteListView: View {
     @EnvironmentObject var quiz: Quiz
+    @State private var isAnswerShown: Bool = false
     @Binding var orderSelected: Int
     let orderRange: [Int]
     let isNote: Bool
@@ -22,7 +23,15 @@ struct NoteListView: View {
                     ForEach(quiz.noteSections(orderSelected: orderSelected), id:\.self) { section in
                         Section {
                             ForEach(quiz.noteSection(orderSelected: orderSelected, section: section)) { note in
-                                NoteLabelView(note: note, orderSelected: orderSelected)
+                                Button(action: {
+                                    isAnswerShown.toggle()
+                                }, label: {
+                                    NoteLabelView(note: note, orderSelected: orderSelected)
+                                })
+                                .sheet(isPresented: $isAnswerShown, content: {
+                                    AnswerView(testNum: note.testNum, number: note.number)
+                                        .environmentObject(quiz)
+                                })
                             }
                             .onDelete {
                                 noteDelete(at: $0, in: section)
@@ -39,7 +48,16 @@ struct NoteListView: View {
                     ForEach(quiz.bookmarkSections(orderSelected: orderSelected), id:\.self) { section in
                         Section {
                             ForEach(quiz.bookmarkSection(orderSelected: orderSelected, section: section)) { bookmark in
-                                BookmarkLabelView(bookmark: bookmark, orderSelected: orderSelected)
+                                
+                                Button(action: {
+                                    isAnswerShown.toggle()
+                                }, label: {
+                                    BookmarkLabelView(bookmark: bookmark, orderSelected: orderSelected)
+                                })
+                                .sheet(isPresented: $isAnswerShown, content: {
+                                    AnswerView(testNum: bookmark.testNum, number: bookmark.number)
+                                        .environmentObject(quiz)
+                                })
                             }
                             .onDelete {
                                 bookmarkDelete(at: $0, in: section)

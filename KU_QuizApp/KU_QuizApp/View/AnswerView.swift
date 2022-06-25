@@ -1,37 +1,37 @@
 //
-//  QuestionSubView.swift
+//  AnswerView.swift
 //  KU_QuizApp
 //
-//  Created by Junyeong Park on 2022/06/22.
+//  Created by Junyeong Park on 2022/06/26.
 //
 
 import SwiftUI
 
-struct QuestionSubView: View {
+struct AnswerView: View {
     @EnvironmentObject var quiz: Quiz
-    let scoreIdx: Int
-    let questionIdx: Int
-    @State var showInfo: Bool = false
+    let testNum: Int
+    let number: Int
+    @State var showInfo: Bool = true
     var body: some View {
         VStack {
-            let question = quiz.fetchQuestion(testNum: quiz.scores[scoreIdx].testNum, scoreIdx: scoreIdx, questionIdx: questionIdx)
+            let question = quiz.questions.filter{$0.testNum == testNum && $0.number == number}[0]
             InfoLabelView(testNum: question.testNum, questionNum: question.number, type: question.type, isBookmarked: quiz.isBookmarked(testNum: question.testNum, number: question.number, type: question.type),showInfo: $showInfo)
             ScrollView(showsIndicators: false) {
-                QuestionDescriptView(testNum: question.testNum, number: question.number, questionDescript: quiz.questionDescript(type: question.type), isTest: quiz.scores[scoreIdx].isTest)
+                QuestionDescriptView(testNum: question.testNum, number: question.number, questionDescript: quiz.questionDescript(type: question.type), isTest: false)
                 QuestionDetailView(question: question, showInfo: $showInfo)
                 QuestionBoxView(questionBox: quiz.fetchQuestionBox(testNum: question.testNum, order: question.order))
                     .opacity(question.type == 6 ? 1 : 0)
-                ChoiceListView(question: question, scoreIdx: scoreIdx, questionIdx: questionIdx, isAnswerShown: false, selectedNum: quiz.scores[scoreIdx].answers[questionIdx], showInfo: $showInfo)
+                ChoiceListView(question: question, scoreIdx: 0, questionIdx: 0, isAnswerShown: true, selectedNum: 0, showInfo: $showInfo)
                     .environmentObject(quiz)
             }
         }
     }
 }
 
-struct QuestionSubView_Previews: PreviewProvider {
+struct AnswerView_Previews: PreviewProvider {
     static let quiz = Quiz()
     static var previews: some View {
-        QuestionSubView(scoreIdx: 0, questionIdx: 50)
+        AnswerView(testNum: 10, number: 1)
             .environmentObject(quiz)
     }
 }
