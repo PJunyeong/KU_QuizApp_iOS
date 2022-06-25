@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A34504F2866933C0008AC8A /* NoteOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A34504E2866933C0008AC8A /* NoteOrderView.swift */; };
+		4A345051286693840008AC8A /* OrderString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A345050286693840008AC8A /* OrderString.swift */; };
 		4A4755692864BCB300AFC321 /* NoteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4755682864BCB200AFC321 /* NoteListView.swift */; };
 		4A47556B2864BCBD00AFC321 /* NoteLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A47556A2864BCBD00AFC321 /* NoteLabelView.swift */; };
 		4AA41B5F2861A4C4002D4D86 /* KU_QuizAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA41B5E2861A4C4002D4D86 /* KU_QuizAppApp.swift */; };
@@ -48,6 +50,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A34504E2866933C0008AC8A /* NoteOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteOrderView.swift; sourceTree = "<group>"; };
+		4A345050286693840008AC8A /* OrderString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderString.swift; sourceTree = "<group>"; };
 		4A4755682864BCB200AFC321 /* NoteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListView.swift; sourceTree = "<group>"; };
 		4A47556A2864BCBD00AFC321 /* NoteLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteLabelView.swift; sourceTree = "<group>"; };
 		4AA41B5B2861A4C4002D4D86 /* KU_QuizApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KU_QuizApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,6 +175,7 @@
 				4AA41BBB286297C8002D4D86 /* ChoiceListView.swift */,
 				4A4755682864BCB200AFC321 /* NoteListView.swift */,
 				4A47556A2864BCBD00AFC321 /* NoteLabelView.swift */,
+				4A34504E2866933C0008AC8A /* NoteOrderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -196,6 +201,7 @@
 				4AA41BAB286209FA002D4D86 /* SafeAreaTop.swift */,
 				4AA41BAD28621378002D4D86 /* popToRootView.swift */,
 				4AD977CF2862DADE005EC185 /* NumberImage.swift */,
+				4A345050286693840008AC8A /* OrderString.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -294,6 +300,7 @@
 				4AA41B792861A5E9002D4D86 /* Score.swift in Sources */,
 				4AA41B8C2861AE76002D4D86 /* DocumentDirectory.swift in Sources */,
 				4AA41B922861B2A9002D4D86 /* Tab.swift in Sources */,
+				4A34504F2866933C0008AC8A /* NoteOrderView.swift in Sources */,
 				4AA41BB6286293C3002D4D86 /* QuestionSubView.swift in Sources */,
 				4AA41BAE28621378002D4D86 /* popToRootView.swift in Sources */,
 				4AD977D02862DADE005EC185 /* NumberImage.swift in Sources */,
@@ -322,6 +329,7 @@
 				4AA41B892861ADC5002D4D86 /* CodableBundleExtension.swift in Sources */,
 				4AA41B982861B420002D4D86 /* ScoreView.swift in Sources */,
 				4A4755692864BCB300AFC321 /* NoteListView.swift in Sources */,
+				4A345051286693840008AC8A /* OrderString.swift in Sources */,
 				4AA41BA02861F8DD002D4D86 /* QuestionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

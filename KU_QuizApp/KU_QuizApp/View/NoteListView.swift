@@ -13,7 +13,7 @@ struct NoteListView: View {
     let isNote: Bool
     // isNote true -> 오답노트 / false -> 북마크 리스트
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NoteOrderView(orderSelected: $orderSelected)
     }
 }
 

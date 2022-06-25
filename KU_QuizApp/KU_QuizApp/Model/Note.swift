@@ -13,4 +13,8 @@ struct Note: Identifiable, Codable {
     let number: Int
     let type: Int
     var wrongCnt: Int = 1
+    
+    mutating func checkWrongCnt() -> Void {
+        wrongCnt += 1
+    }
 }
