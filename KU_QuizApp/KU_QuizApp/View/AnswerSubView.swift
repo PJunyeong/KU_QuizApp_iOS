@@ -11,6 +11,7 @@ struct AnswerSubView: View {
     @EnvironmentObject var quiz: Quiz
     let testNum: Int
     let number: Int
+    let answer: Int
     @State var showInfo: Bool = false
     var body: some View {
         VStack {
@@ -21,7 +22,7 @@ struct AnswerSubView: View {
                 QuestionDetailView(question: question, showInfo: $showInfo)
                 QuestionBoxView(questionBox: quiz.fetchQuestionBox(testNum: question.testNum, order: question.order))
                     .opacity(question.type == 6 ? 1 : 0)
-                ChoiceListView(question: question, scoreIdx: 0, questionIdx: 0, isAnswerShown: true, selectedNum: 0, showInfo: $showInfo)
+                ChoiceListView(question: question, scoreIdx: 0, questionIdx: 0, isAnswerShown: true, selectedNum: answer, showInfo: $showInfo)
                     .environmentObject(quiz)
             }
         }
@@ -31,7 +32,7 @@ struct AnswerSubView: View {
 struct AnswerSubView_Previews: PreviewProvider {
     static let quiz = Quiz()
     static var previews: some View {
-        AnswerSubView(testNum: 10, number: 1)
+        AnswerSubView(testNum: 10, number: 1, answer: 0)
             .environmentObject(quiz)
     }
 }

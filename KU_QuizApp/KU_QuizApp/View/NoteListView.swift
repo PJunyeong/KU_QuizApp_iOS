@@ -33,7 +33,7 @@ struct NoteListView: View {
                                     NoteLabelView(note: note, orderSelected: orderSelected)
                                 })
                                 .sheet(isPresented: $isAnswerShown, content: {
-                                    AnswerSubView(testNum: testNum, number: number)
+                                    AnswerSubView(testNum: testNum, number: number, answer: 0)
                                         .environmentObject(quiz)
                                 })
                             }
@@ -61,7 +61,7 @@ struct NoteListView: View {
                                     BookmarkLabelView(bookmark: bookmark, orderSelected: orderSelected)
                                 })
                                 .sheet(isPresented: $isAnswerShown, content: {
-                                    AnswerSubView(testNum: testNum, number: number)
+                                    AnswerSubView(testNum: testNum, number: number, answer: 0)
                                         .environmentObject(quiz)
                                 })
                             }

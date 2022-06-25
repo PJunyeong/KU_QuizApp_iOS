@@ -17,7 +17,8 @@ struct AnswerView: View {
             SliderView(questionNum: $questionNum, selectedQuestion: $selectedQuestion, questionCnt: quiz.scores[scoreIdx].questionCnt)
             TabView(selection: $selectedQuestion) {
                 ForEach(0..<quiz.scores[scoreIdx].questionCnt, id:\.self) { idx in
-                    QuestionSubView(scoreIdx: scoreIdx, questionIdx: idx)
+                    let question = quiz.fetchQuestion(testNum: quiz.scores[scoreIdx].testNum, scoreIdx: scoreIdx, questionIdx: idx)
+                    AnswerSubView(testNum: question.testNum, number: question.number, answer: quiz.scores[scoreIdx].answers[idx])
                         .tag(idx)
                         .environmentObject(quiz)
                 }
