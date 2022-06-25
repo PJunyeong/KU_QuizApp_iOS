@@ -38,6 +38,8 @@ struct MainView: View {
             .font(.largeTitle)
             // TODO; 모달 뷰 dismiss 시 네비게이션 Large TItle 업데이트가 늦음
         }
+        .navigationViewStyle(.stack)
+
     }
 }
 

@@ -22,7 +22,7 @@ struct TestListView: View {
     @State private var scoreIdx: Int = 0
     @Binding var isTest: Bool
     var body: some View {
-        if isTest {                        
+        if isTest {
             ForEach(testNums, id:\.self) { testNum in
                 Button(action: {
                     self.testNum = testNum
