@@ -9,6 +9,7 @@ import SwiftUI
 
 struct NoteOrderView: View {
     @State var isOrderShown: Bool = false
+    let orderRange: [Int]
     @Binding var orderSelected: Int
     var body: some View {
         HStack {
@@ -26,7 +27,7 @@ struct NoteOrderView: View {
                 isPresented: $isOrderShown,
                 titleVisibility: .visible
             ) {
-                ForEach(0..<3, id:\.self) { order in
+                ForEach(orderRange, id:\.self) { order in
                     Button(action: {
                         withAnimation {
                             orderSelected = order
@@ -48,6 +49,6 @@ struct NoteOrderView: View {
 
 struct NoteOrderView_Previews: PreviewProvider {
     static var previews: some View {
-        NoteOrderView(orderSelected: .constant(1))
+        NoteOrderView(orderRange: [1, 2], orderSelected: .constant(1))
     }
 }

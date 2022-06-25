@@ -9,18 +9,21 @@ import SwiftUI
 
 struct NoteListView: View {
     @EnvironmentObject var quiz: Quiz
-    @State private var orderSelected: Int = 0
+    @State var orderSelected: Int
+    let orderRange: [Int]
     let isNote: Bool
     // isNote true -> 오답노트 / false -> 북마크 리스트
     var body: some View {
-        NoteOrderView(orderSelected: $orderSelected)
+        VStack {
+            NoteOrderView(orderRange: orderRange, orderSelected: $orderSelected)
+        }
     }
 }
 
 struct NoteListView_Previews: PreviewProvider {
     static let quiz = Quiz()
     static var previews: some View {
-        NoteListView(isNote: true)
+        NoteListView(orderSelected: 0, orderRange: [0, 1, 2], isNote: true)
             .environmentObject(quiz)
     }
 }

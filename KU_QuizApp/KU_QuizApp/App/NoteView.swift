@@ -16,10 +16,10 @@ struct NoteView: View {
         VStack {
             SegmentedPickerView(pickerName: "NoteViewPicker", tag1: "오답", tag2: "북마크", isTag1: $isNote)
             if isNote {
-                NoteListView(isNote: true)
+                NoteListView(orderSelected: 0, orderRange: [0, 1, 2], isNote: true)
                     .environmentObject(quiz)
             } else {
-                NoteListView(isNote: false)
+                NoteListView(orderSelected: 1, orderRange: [1, 2], isNote: false)
                     .environmentObject(quiz)
             }
         }
@@ -27,7 +27,9 @@ struct NoteView: View {
 }
 
 struct NoteView_Previews: PreviewProvider {
+    static let quiz = Quiz()
     static var previews: some View {
         NoteView()
+            .environmentObject(quiz)
     }
 }
