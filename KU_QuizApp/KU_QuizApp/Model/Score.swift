@@ -20,7 +20,7 @@ struct Score: Identifiable, Codable {
     var answers: [Int] = []
     
     var submittedScore: Int {
-        if questions == nil && testNum != nil {
+        if questions == nil {
             let questions: [Question] = Bundle.main.decode("questions.json")
             let questionsFiltered = questions.filter{$0.testNum == testNum!}.sorted(by: {$0.number < $1.number})
             let rightAnswers = questionsFiltered.map{$0.answer}
@@ -40,6 +40,7 @@ struct Score: Identifiable, Codable {
             guard let questions = questions else {
                 return total
             }
+            
             for idx in 0..<questionCnt {
                 if questions[idx].answer == answers[idx] {
                     total += 1
@@ -57,7 +58,7 @@ struct Score: Identifiable, Codable {
     }
     
     mutating func setAnswers() -> Void {
-        self.answers = Array(repeating: 0, count: questionCnt + 1)
+        self.answers = Array(repeating: 0, count: questionCnt)
         // answer 개수 -> 문제 수 조정
     }
     
@@ -89,5 +90,56 @@ struct Score: Identifiable, Codable {
         }
         
         self.answers[questionIdx] = answer        
+    }
+    
+    var scoreCnt: String {
+        guard isSubmitted else {
+            return ""
+        }
+        
+        return "\(submittedScore) / \(questionCnt)"
+    }
+    
+    var scoreMessage: String {
+        guard isSubmitted else {
+            return ""
+        }
+        
+        let percent = Double(submittedScore) / Double(questionCnt) * 100.0
+        
+        if isTest {
+            // 기출별 문제
+            if percent >= 90.0 {
+                return "1급 합격입니다! 미리 합격 축하드립니다"
+            } else if percent >= 80.0 {
+                return "2급 합격입니다! 문제 없이 안정권이군요!"
+            } else if percent >= 60.0 {
+                return "3급 합격입니다!"
+            } else if percent >= 50.0 {
+                return "불합격입니다! 조금만 더 노력해볼까요?"
+            } else if percent >= 40.0 {
+                return "불합격입니다! 오답노트로 공부해보세요!"
+            } else {
+                return "불합격입니다! 모르는 문제는 북마크로 표시해보세요!"
+            }
+        } else {
+            // 유형별 문제
+            guard let type = type else {
+                return "유형별 문제"
+            }
+            if percent >= 90.0 {
+                return "명실상부 \(type)번 유형의 고수입니다!"
+            } else if percent >= 80.0 {
+                return "거의 \(type)번 유형을 마스터하셨군요!"
+            } else if percent >= 60.0 {
+                return "\(type)번 유형에 익숙해지셨군요!"
+            } else if percent >= 50.0 {
+                return "\(type)번 유형에 한 번 더 도전해보시겠어요?"
+            } else if percent >= 40.0 {
+                return "\(type)번 유형 관련 오답노트를 살펴보세요!"
+            } else {
+                return "\(type)번 유형으로 북마크를 채워보세요!"
+            }
+        }
     }
 }

@@ -22,7 +22,7 @@ class Quiz: Identifiable, ObservableObject {
             noteSave()
         }
     }
-    @Published var scores: [Score] = [Score(date: Date(), isTest: true, isSubmitted: false, testNum: 10, type: nil, questionCnt: 100, questions: nil, answers: Array(repeating: 0, count: 101))]
+    @Published var scores: [Score] = [Score(date: Date(), isTest: true, isSubmitted: true, testNum: 10, type: nil, questionCnt: 100, questions: nil, answers: Array(repeating: 0, count: 100)), Score(date: Date(), isTest: true, isSubmitted: true, testNum: 20, type: nil, questionCnt: 100, questions: nil, answers: Array(repeating: 0, count: 100)), Score(date: Date(), isTest: true, isSubmitted: true, testNum: 30, type: nil, questionCnt: 100, questions: nil, answers: Array(repeating: 0, count: 100)), Score(date: Date(), isTest: true, isSubmitted: true, testNum: 40, type: nil, questionCnt: 100, questions: nil, answers: Array(repeating: 0, count: 100)), Score(date: Date(), isTest: true, isSubmitted: true, testNum: 10, type: nil, questionCnt: 100, questions: nil, answers: Array(repeating: 0, count: 100))]
  {
         didSet {
             scoreSave()
@@ -141,7 +141,7 @@ class Quiz: Identifiable, ObservableObject {
         scores.remove(at: scoreIdx)
     }
     
-    func scoreReset() -> Void {
+    func resetScore() -> Void {
         scores = []
         print("Score Reset")
     }
@@ -149,8 +149,8 @@ class Quiz: Identifiable, ObservableObject {
     func setScoreIdx(isTest: Bool, testNum: Int?, type: Int?, questionCnt: Int) -> Int {
         var score = Score(date: Date(), isTest: isTest, testNum: testNum, type: type, questionCnt: questionCnt)
         score.setAnswers()
-        let type: Int = type ?? 1
         if !isTest {
+            let type: Int = type ?? 1
             let questions = randomQuestions(type: type, questionCnt: questionCnt)
             score.setQuestions(questions: questions)
         }
@@ -182,6 +182,32 @@ class Quiz: Identifiable, ObservableObject {
         } else {
             // 높은 점수순 리턴
             return scoreSorted.sorted(by: {$0.submittedScore > $1.submittedScore})
+        }
+    }
+    
+    func scoreSections(orderSelected: Int, isTest: Bool) -> [Any] {
+        let scoreSorted = scoreSorted(isTest: isTest, orderSelected: orderSelected)
+        if orderSelected == 3 {
+            let scoreSections = Array(Set(scoreSorted.map{$0.date}))
+            // TODO: 날짜 정렬 -> 일일 단위, 주 단위 등 정교화하기
+            return scoreSections.sorted(by: >)
+        } else {
+            let scoreSections = Array(Set(scoreSorted.map{$0.submittedScore}))
+            if orderSelected == 4 {
+                return scoreSections.sorted(by: <)
+            } else {
+                return scoreSections.sorted(by: >)
+            }
+        }
+    }
+    
+    func scoreSection(orderSelected: Int, isTest: Bool, section: Any) -> [Score] {
+        let scoreSorted = scoreSorted(isTest: isTest, orderSelected: orderSelected)
+        if orderSelected == 3 {
+            return scoreSorted.filter{$0.date == section as! Date}
+            // TODO: 날짜 정렬 조건 -> 추후
+        } else {
+            return scoreSorted.filter{$0.submittedScore == section as! Int}
         }
     }
     
@@ -294,7 +320,7 @@ class Quiz: Identifiable, ObservableObject {
     func fetchQuestions(testNum: Int?, scoreIdx: Int) -> [Question] {
         if testNum == nil {
             if scores[scoreIdx].questions != nil {
-                return scores[scoreIdx].questions!.sorted(by: {$0.number < $1.number})
+                return scores[scoreIdx].questions!
             }
         } else {
             return questions.filter{$0.testNum == testNum}.sorted(by: {$0.number < $1.number})
@@ -313,6 +339,40 @@ class Quiz: Identifiable, ObservableObject {
             return ""
         } else {
             return questionBox[0].box
+        }
+    }
+    
+    func setnotes(scoreIdx: Int) -> Void {
+        guard scoreIdx < scores.count else {
+            return
+        }
+        
+        let questions = scores[scoreIdx].questions ?? questions.filter{$0.testNum == scores[scoreIdx].testNum}.sorted(by: {$0.number < $1.number})
+        let questionCnt = scores[scoreIdx].questionCnt
+        let answers = scores[scoreIdx].answers
+        
+        for idx in 0..<questionCnt {
+            let answer = answers[idx]
+            let rightAnswer = questions[idx].answer
+            let testNum = questions[idx].testNum
+            let number = questions[idx].number
+            let type = questions[idx].type
+            
+            if answer != rightAnswer {
+                var flag: Bool = false
+                for noteIdx in 0..<notes.count {
+                    let note = notes[noteIdx]
+                    if note.testNum == testNum && note.number == number {
+                        notes[noteIdx].checkWrongCnt()
+                        flag = true
+                        break
+                    }
+                }
+                if !flag {
+                    let note = Note(testNum: testNum, number: number, type: type)
+                    notes.append(note)
+                }
+            }
         }
     }
     
@@ -373,5 +433,9 @@ class Quiz: Identifiable, ObservableObject {
         } else {
             return noteSorted.filter{$0.type == section}
         }
+    }
+    
+    func resetNote() -> Void {
+        notes = []
     }
 }

@@ -14,12 +14,16 @@ struct ScoreView: View {
     var body: some View {
         VStack {
             SegmentedPickerView(pickerName: "ScoreViewPicker", tag1: "기출별", tag2: "유형별", isTag1: $isTest)
+            ScoreListView(orderSelected: 4, orderRange: [3, 4, 5], isTest: isTest)
+                .environmentObject(quiz)
         }
     }
 }
 
 struct ScoreView_Previews: PreviewProvider {
+    static let quiz = Quiz()
     static var previews: some View {
         ScoreView()
+            .environmentObject(quiz)
     }
 }

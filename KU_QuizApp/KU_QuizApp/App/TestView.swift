@@ -17,7 +17,7 @@ struct TestView: View {
                 .environmentObject(quiz)
             Spacer()
             Button(action: {
-                quiz.scoreReset()
+                quiz.resetScore()
             }, label: {
                 Text("RESET SCORE")
             })
@@ -25,6 +25,11 @@ struct TestView: View {
                 quiz.resetBookmark()
             }, label: {
                 Text("RESET BOOKMARK")
+            })
+            Button(action: {
+                quiz.resetNote()
+            }, label: {
+                Text("RESET NOTES")
             })
         }
     }

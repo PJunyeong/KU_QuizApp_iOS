@@ -23,9 +23,11 @@ struct NoteListView: View {
                             ForEach(quiz.noteSection(orderSelected: orderSelected, section: section)) { note in
                                 NoteLabelView(note: note, orderSelected: orderSelected)
                             }
-                            .onDelete(perform: noteDelete)
+                            .onDelete {
+                                noteDelete(at: $0, in: section)
+                            }
                         } header: {
-                            Text(NoteHeader(orderSelected: orderSelected, Header: section))
+                            Text(HeaderName(orderSelected: orderSelected, Header: section))
                         }
                     }
                 }
@@ -37,9 +39,11 @@ struct NoteListView: View {
                             ForEach(quiz.bookmarkSection(orderSelected: orderSelected, section: section)) { bookmark in
                                 BookmarkLabelView(bookmark: bookmark, orderSelected: orderSelected)
                             }
-                            .onDelete(perform: bookmarkDelete)
+                            .onDelete {
+                                bookmarkDelete(at: $0, in: section)
+                            }
                         } header: {
-                            Text(NoteHeader(orderSelected: orderSelected, Header: section))
+                            Text(HeaderName(orderSelected: orderSelected, Header: section))
                         }
                     }
                 }
@@ -47,14 +51,18 @@ struct NoteListView: View {
             }
         }
     }
-    func noteDelete(offset: IndexSet) {
+    func noteDelete(at offset: IndexSet, in section: Int) {
         withAnimation {
-            quiz.notes.remove(atOffsets: offset)
+            let idx = offset[offset.startIndex]
+            let note = quiz.noteSection(orderSelected: orderSelected, section: section)[idx]
+            quiz.notes.removeAll(where: {$0.id == note.id})
         }
     }
-    func bookmarkDelete(offset: IndexSet) {
+    func bookmarkDelete(at offset: IndexSet, in section: Int) {
         withAnimation {
-            quiz.bookmarks.remove(atOffsets: offset)
+            let idx = offset[offset.startIndex]
+            let bookmark = quiz.bookmarkSection(orderSelected: orderSelected, section: section)[idx]
+            quiz.bookmarks.removeAll(where: {$0.id == bookmark.id})
         }
     }
 }

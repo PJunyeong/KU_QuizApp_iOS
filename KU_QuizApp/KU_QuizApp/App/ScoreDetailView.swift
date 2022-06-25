@@ -11,11 +11,17 @@ struct ScoreDetailView: View {
     @EnvironmentObject var quiz: Quiz
     let scoreIdx: Int
     var body: some View {
-        Button(action: {
-            popToRootView()
-        }, label: {
-            Text("DISMISS")
-        })
+        VStack {
+            ScoreNavBarView(questionTitle: quiz.scores[scoreIdx].questionTitle)
+            Text(quiz.scores[scoreIdx].scoreCnt)
+                .font(.largeTitle)
+                .fontWeight(.heavy)
+                .foregroundColor(.accentColor)
+                .padding()
+            Text(quiz.scores[scoreIdx].scoreMessage)
+                .font(.headline)
+                .fontWeight(.bold)
+        }
     }
 }
 

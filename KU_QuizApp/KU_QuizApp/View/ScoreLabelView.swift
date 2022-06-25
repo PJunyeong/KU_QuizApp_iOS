@@ -9,15 +9,22 @@ import SwiftUI
 
 struct ScoreLabelView: View {
     let score: Score
+    let orderSelected: Int
     var body: some View {
         HStack {
-            Text("score -> 정보 추출 ")
+            if orderSelected == 3 {
+                Text("\(score.submittedScore) / \(score.questionCnt) 점")
+                Text("\(score.questionTitle)")
+            } else {
+                Text("\(score.questionTitle)")
+                Text("\(score.date)")
+            }
         }
     }
 }
 
 struct ScoreLabelView_Previews: PreviewProvider {
     static var previews: some View {
-        ScoreLabelView(score: Score(date: Date(), isTest: true, testNum: 10, type: nil, questionCnt: 100))
+        ScoreLabelView(score: Score(date: Date(), isTest: true, testNum: 10, type: nil, questionCnt: 100), orderSelected: 4)
     }
 }

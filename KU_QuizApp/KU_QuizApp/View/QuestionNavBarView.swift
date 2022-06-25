@@ -61,6 +61,7 @@ struct QuestionNavBarView: View {
         .alert(Text(quiz.scores[scoreIdx].isAllChecked ? "모든 문제를 풀었습니다. 제출하시겠습니까?" : "아직 풀지 않은 문제가 있습니다"), isPresented: $showSubmitAlert) {
             Button("네. 제출하겠습니다", role: .destructive) {
                 quiz.scores[scoreIdx].submit()
+                quiz.setnotes(scoreIdx: scoreIdx)
                 isSubmitted.toggle()
             }
             Button("아니오", role: .cancel) {}
