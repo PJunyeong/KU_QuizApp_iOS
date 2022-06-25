@@ -10,6 +10,8 @@ import SwiftUI
 struct NoteListView: View {
     @EnvironmentObject var quiz: Quiz
     @State private var isAnswerShown: Bool = false
+    @State private var testNum = 10
+    @State private var number = 1
     @Binding var orderSelected: Int
     let orderRange: [Int]
     let isNote: Bool
@@ -24,12 +26,14 @@ struct NoteListView: View {
                         Section {
                             ForEach(quiz.noteSection(orderSelected: orderSelected, section: section)) { note in
                                 Button(action: {
+                                    testNum = note.testNum
+                                    number = note.number
                                     isAnswerShown.toggle()
                                 }, label: {
                                     NoteLabelView(note: note, orderSelected: orderSelected)
                                 })
                                 .sheet(isPresented: $isAnswerShown, content: {
-                                    AnswerView(testNum: note.testNum, number: note.number)
+                                    AnswerView(testNum: testNum, number: number)
                                         .environmentObject(quiz)
                                 })
                             }
@@ -50,12 +54,14 @@ struct NoteListView: View {
                             ForEach(quiz.bookmarkSection(orderSelected: orderSelected, section: section)) { bookmark in
                                 
                                 Button(action: {
+                                    testNum = bookmark.testNum
+                                    number = bookmark.number
                                     isAnswerShown.toggle()
                                 }, label: {
                                     BookmarkLabelView(bookmark: bookmark, orderSelected: orderSelected)
                                 })
                                 .sheet(isPresented: $isAnswerShown, content: {
-                                    AnswerView(testNum: bookmark.testNum, number: bookmark.number)
+                                    AnswerView(testNum: testNum, number: number)
                                         .environmentObject(quiz)
                                 })
                             }
