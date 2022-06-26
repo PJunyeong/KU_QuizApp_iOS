@@ -24,8 +24,7 @@ struct ScoreGridView: View {
                         Button(action: {
                             sliderTabIdx = SliderTabIdx(questionNum: Double(idx + 1), selectedQuestion: idx)
                         }, label: {
-                            Text("\(idx + 1)")
-                                .foregroundColor(.black)
+                            ScoreGridLabelView(number: idx + 1)
                         })
                         .sheet(item: $sliderTabIdx) { stIdx in
                             AnswerView(scoreIdx: scoreIdx, questionNum: stIdx.questionNum, selectedQuestion: stIdx.selectedQuestion)

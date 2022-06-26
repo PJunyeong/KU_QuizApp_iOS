@@ -8,13 +8,20 @@
 import SwiftUI
 
 struct ScoreGridLabelView: View {
+    @Environment(\.colorScheme) var colorScheme
+    let number: Int
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        let color = colorScheme == .dark ? Color.white : Color.black
+        Text("\(number)")
+            .font(.title)
+            .fontWeight(.bold)
+            .foregroundColor(color)
     }
 }
 
 struct ScoreGridLabelView_Previews: PreviewProvider {
     static var previews: some View {
-        ScoreGridLabelView()
+        ScoreGridLabelView(number: 100)
+            .previewLayout(.sizeThatFits)
     }
 }

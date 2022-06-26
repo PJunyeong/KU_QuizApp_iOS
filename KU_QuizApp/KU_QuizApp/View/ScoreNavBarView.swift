@@ -34,7 +34,7 @@ struct ScoreNavBarView: View {
         .padding(.bottom)
         .padding(.top, SafeAreaTop())
         .padding(.top, 20)
-        .background(.white)
+        .background(Color(UIColor.systemBackground))
         .shadow(color: Color.black.opacity(0.05), radius: 5, x: 0, y: 5)
     }
 }

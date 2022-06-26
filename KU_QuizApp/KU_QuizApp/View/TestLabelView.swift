@@ -8,17 +8,22 @@
 import SwiftUI
 
 struct TestLabelView: View {
+    @Environment(\.colorScheme) var colorScheme
     let testLabelName: String
     var body: some View {
+        let color = colorScheme == .dark ? Color.black : Color.white
         HStack(alignment: .firstTextBaseline){
             Image(systemName: "pencil")
+                .scaledToFit()
+                .font(.system(.largeTitle, design: .rounded))
             Text(testLabelName)
+                .font(.system(.largeTitle, design: .rounded))
+                .fontWeight(.bold)
         }
         .frame(alignment: .center)
-        .font(.largeTitle)
         .padding()
         .padding(.horizontal, 20)
-        .foregroundColor(.white)
+        .foregroundColor(color)
         .background(Color.accentColor)
         .clipShape(Capsule())
     }
