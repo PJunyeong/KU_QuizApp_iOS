@@ -28,6 +28,7 @@
 		4A3450752868232A0008AC8A /* SettingLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3450742868232A0008AC8A /* SettingLabelView.swift */; };
 		4A345077286823320008AC8A /* SettingRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A345076286823320008AC8A /* SettingRowView.swift */; };
 		4A34507A286830380008AC8A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4A34507C286830380008AC8A /* Localizable.strings */; };
+		4A34507F286879A50008AC8A /* ScoreOrderString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A34507E286879A50008AC8A /* ScoreOrderString.swift */; };
 		4A4755692864BCB300AFC321 /* NoteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4755682864BCB200AFC321 /* NoteListView.swift */; };
 		4A47556B2864BCBD00AFC321 /* NoteLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A47556A2864BCBD00AFC321 /* NoteLabelView.swift */; };
 		4AA41B5F2861A4C4002D4D86 /* KU_QuizAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA41B5E2861A4C4002D4D86 /* KU_QuizAppApp.swift */; };
@@ -91,6 +92,7 @@
 		4A345076286823320008AC8A /* SettingRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRowView.swift; sourceTree = "<group>"; };
 		4A34507B286830380008AC8A /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4A34507D2868308A0008AC8A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4A34507E286879A50008AC8A /* ScoreOrderString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreOrderString.swift; sourceTree = "<group>"; };
 		4A4755682864BCB200AFC321 /* NoteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListView.swift; sourceTree = "<group>"; };
 		4A47556A2864BCBD00AFC321 /* NoteLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteLabelView.swift; sourceTree = "<group>"; };
 		4AA41B5B2861A4C4002D4D86 /* KU_QuizApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KU_QuizApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -260,6 +262,7 @@
 				4A3450562866F8DB0008AC8A /* HeaderName.swift */,
 				4A34505E2867514D0008AC8A /* HeaderName2.swift */,
 				4A34506028675C270008AC8A /* ResetName.swift */,
+				4A34507E286879A50008AC8A /* ScoreOrderString.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 				4A345071286785A50008AC8A /* SliderTabIdx.swift in Sources */,
 				4A345065286769DA0008AC8A /* ScoreGridView.swift in Sources */,
 				4A34506D286780370008AC8A /* SettingView.swift in Sources */,
+				4A34507F286879A50008AC8A /* ScoreOrderString.swift in Sources */,
 				4A4755692864BCB300AFC321 /* NoteListView.swift in Sources */,
 				4A345051286693840008AC8A /* OrderString.swift in Sources */,
 				4AA41BA02861F8DD002D4D86 /* QuestionView.swift in Sources */,

@@ -9,14 +9,14 @@ import SwiftUI
 
 struct ScoreSelectOrderView: View {
     @State private var isOrderShown: Bool = false
-    @Binding var scoreSelected: Bool
+    @Binding var scoreSelected: Int
     var body: some View {
         HStack {
             Spacer()
             Button(action: {
                 isOrderShown.toggle()
             }, label: {
-                Text(scoreSelected ? "틀린 문제" : "모든 문제")
+                Text(ScoreOrderString(scoreSelected:scoreSelected))
                     .font(.headline)
                     .fontWeight(.bold)
                     .padding(.horizontal, 20)
@@ -28,17 +28,24 @@ struct ScoreSelectOrderView: View {
             ) {
                 Button(action: {
                     withAnimation {
-                        scoreSelected = false
+                        scoreSelected = 0
                     }
                 }, label: {
                     Text("모든 문제 확인")
                 })
                 Button(action: {
                     withAnimation {
-                        scoreSelected = true
+                        scoreSelected = 1
                     }
                 }, label: {
                     Text("틀린 문제 보기")
+                })
+                Button(action: {
+                    withAnimation {
+                        scoreSelected = 2
+                    }
+                }, label: {
+                    Text("맞힌 문제 보기")
                 })
                 Button("다시 생각해볼게요", role: .cancel) {
                     withAnimation {
@@ -52,6 +59,6 @@ struct ScoreSelectOrderView: View {
 
 struct ScoreSelectOrderView_Previews: PreviewProvider {
     static var previews: some View {
-        ScoreSelectOrderView(scoreSelected: .constant(true))
+        ScoreSelectOrderView(scoreSelected: .constant(1))
     }
 }

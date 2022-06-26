@@ -16,6 +16,7 @@ struct ScoreGridLabelView: View {
             .font(.title)
             .fontWeight(.bold)
             .foregroundColor(color)
+        // TODO: 정렬 조건 또는 정답/오답에 따른 색깔 여부 체크
     }
 }
 

@@ -19,8 +19,12 @@ struct Score: Identifiable, Codable {
     var questions: [Question]? = nil
     var answers: [Int] = []
     var submittedScore = 0
+    var submittedRight: [Int] = []
+    var submittedWrong: [Int] = []
     
     mutating func rateScore() -> Void {
+        var submittedRight = [Int]()
+        var submittedWrong = [Int]()
         if questions == nil {
             let questions: [Question] = Bundle.main.decode("questions.json")
             let questionsFiltered = questions.filter{$0.testNum == testNum!}.sorted(by: {$0.number < $1.number})
@@ -33,9 +37,14 @@ struct Score: Identifiable, Codable {
             for idx in 0..<questionCnt {
                 if rightAnswers[idx] == answers[idx] {
                     total += 1
+                    submittedRight.append(idx)
+                } else {
+                    submittedWrong.append(idx)
                 }
             }
             submittedScore = total
+            self.submittedRight = submittedRight
+            self.submittedWrong = submittedWrong
         } else {
             var total = 0
             guard let questions = questions else {
@@ -45,9 +54,14 @@ struct Score: Identifiable, Codable {
             for idx in 0..<questionCnt {
                 if questions[idx].answer == answers[idx] {
                     total += 1
+                    submittedRight.append(idx)
+                } else {
+                    submittedWrong.append(idx)
                 }
             }
             submittedScore = total
+            self.submittedRight = submittedRight
+            self.submittedWrong = submittedWrong
         }
     }
     
@@ -67,6 +81,21 @@ struct Score: Identifiable, Codable {
         self.date = Date()
         self.isSubmitted = true
         rateScore()
+    }
+    
+    func selectedAnswers(scoreSelected: Int) -> [Int] {
+        
+        guard isSubmitted else {
+            return []
+        }
+        
+        if scoreSelected == 0 {
+            return Array(0..<questionCnt)
+        } else if scoreSelected == 1 {
+            return submittedWrong
+        } else {
+            return submittedRight
+        }
     }
     
     var isAllChecked: Bool {

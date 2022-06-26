@@ -61,7 +61,6 @@ struct MainView_Previews: PreviewProvider {
     static let quiz: Quiz = Quiz()
     static var previews: some View {
         MainView()
-            .colorScheme(.dark)
             .environmentObject(quiz)
     }
 }

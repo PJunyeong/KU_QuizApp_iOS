@@ -12,9 +12,11 @@ struct AnswerView: View {
     let scoreIdx: Int
     @State var questionNum: Double
     @State var selectedQuestion: Int
+    @Binding var scoreSelected: Int
     var body: some View {
-        VStack(alignment: .center) {
-            SliderView(questionNum: $questionNum, selectedQuestion: $selectedQuestion, questionCnt: quiz.scores[scoreIdx].questionCnt)
+        VStack(alignment: .center) {            
+            SliderView(questionNum: $questionNum, selectedQuestion: $selectedQuestion, questionCnt: quiz.scores[scoreIdx].selectedAnswers(scoreSelected: scoreSelected).count)
+            // 주어진 조건에 따른 문제만 슬라이딩/탭으로 보여주기
             TabView(selection: $selectedQuestion) {
                 ForEach(0..<quiz.scores[scoreIdx].questionCnt, id:\.self) { idx in
                     let question = quiz.fetchQuestion(testNum: quiz.scores[scoreIdx].testNum, scoreIdx: scoreIdx, questionIdx: idx)
@@ -35,7 +37,7 @@ struct AnswerView: View {
 struct AnswerView_Previews: PreviewProvider {
     static let quiz = Quiz()
     static var previews: some View {
-        AnswerView(scoreIdx: 0, questionNum: 1.0, selectedQuestion: 0)
+        AnswerView(scoreIdx: 0, questionNum: 1.0, selectedQuestion: 0, scoreSelected: .constant(1))
             .environmentObject(quiz)
     }
 }

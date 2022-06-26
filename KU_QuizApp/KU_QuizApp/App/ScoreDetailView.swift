@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ScoreDetailView: View {
     @EnvironmentObject var quiz: Quiz
-    @State var scoreSelected: Bool = false
+    @State var scoreSelected: Int = 0
     let scoreIdx: Int
     var body: some View {
         VStack {

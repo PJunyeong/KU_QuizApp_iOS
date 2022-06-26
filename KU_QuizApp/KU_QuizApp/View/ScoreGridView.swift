@@ -13,22 +13,21 @@ struct ScoreGridView: View {
     let gridLayout: [GridItem] = Array(repeating: GridItem(.flexible()), count: 5)
     @State private var isAnimating: Bool = false
     @State private var sliderTabIdx: SliderTabIdx? = nil
-    @Binding var scoreSelected: Bool
+    @Binding var scoreSelected: Int
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVGrid(columns: gridLayout, alignment: .center, spacing: 10) {
-                ForEach(0..<quiz.scores[scoreIdx].questionCnt, id:\.self) { idx in
-                    let question = quiz.fetchQuestion(testNum: quiz.scores[scoreIdx].testNum, scoreIdx: scoreIdx, questionIdx: idx)
-                    if (scoreSelected && quiz.scores[scoreIdx].answers[idx] != question.answer) || !scoreSelected {
-                        // 틀린 문제, 모든 문제 해당 문제 표시
-                        Button(action: {
-                            sliderTabIdx = SliderTabIdx(questionNum: Double(idx + 1), selectedQuestion: idx)
-                        }, label: {
-                            ScoreGridLabelView(number: idx + 1)
-                        })
-                        .sheet(item: $sliderTabIdx) { stIdx in
-                            AnswerView(scoreIdx: scoreIdx, questionNum: stIdx.questionNum, selectedQuestion: stIdx.selectedQuestion)
-                        }
+                let answers = quiz.scores[scoreIdx].selectedAnswers(scoreSelected: scoreSelected)
+                ForEach(answers, id:\.self) { idx in
+                    Button(action: {
+                        let newIdx = answers.firstIndex(of: idx) ?? 0
+                        sliderTabIdx = SliderTabIdx(questionNum: Double(newIdx + 1), selectedQuestion: newIdx)
+                    }, label: {
+                        ScoreGridLabelView(number: idx + 1)
+                    })
+                    .sheet(item: $sliderTabIdx) { stIdx in
+                        AnswerView(scoreIdx: scoreIdx, questionNum: stIdx.questionNum, selectedQuestion: stIdx.selectedQuestion, scoreSelected: $scoreSelected)
+                    }
                     }
                 }
             }
@@ -37,7 +36,6 @@ struct ScoreGridView: View {
                 isAnimating.toggle()
             }
             .padding(.horizontal, 10)
-        }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
@@ -46,7 +44,7 @@ struct ScoreGridView_Previews: PreviewProvider {
     static let quiz = Quiz()
     static var previews: some View {
         let scoreIdx = 0
-        ScoreGridView(scoreIdx: scoreIdx, scoreSelected: .constant(false))
+        ScoreGridView(scoreIdx: scoreIdx, scoreSelected: .constant(1))
             .environmentObject(quiz)
     }
 }
