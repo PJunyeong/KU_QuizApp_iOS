@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct InfoLabelView: View {
+    // TODO: 타이머 설정 -> 유저 테스트 후 취합하기 (UserDefaults로 체크)
     @EnvironmentObject var quiz: Quiz
     let testNum: Int
     let questionNum: Int

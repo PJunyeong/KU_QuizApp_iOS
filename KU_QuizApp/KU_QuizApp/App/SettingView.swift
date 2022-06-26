@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct SettingView: View {
+    // 기출 문제 정보 (학교 사이트 및 저작권 등)
+    // 어플리케이션 정보
+    // 타이머, 온보딩 등
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView(.vertical, showsIndicators: false) {
+            
+        }
     }
 }
 

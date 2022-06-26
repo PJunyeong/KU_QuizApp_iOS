@@ -9,9 +9,11 @@ import SwiftUI
 
 struct MainView: View {
     @EnvironmentObject var quiz: Quiz
+    @Environment(\.colorScheme) var colorScheme
     init() {
-    UITabBar.appearance().backgroundColor = UIColor.white
+        UITabBar.appearance().backgroundColor = UIColor.systemBackground
     }
+    @State private var settingSelected: Bool = false
     @State var tabSelected = Tab.first
     var body: some View {
         NavigationView{
@@ -36,10 +38,22 @@ struct MainView: View {
             .navigationTitle(tabSelected.title)
             .navigationBarTitleDisplayMode(.large)
             .font(.largeTitle)
-            // TODO; 모달 뷰 dismiss 시 네비게이션 Large TItle 업데이트가 늦음
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing, content: {
+                    Button(action: {
+                        settingSelected.toggle()
+                    }, label: {
+                        Image(systemName: "gearshape")
+                            .resizable()
+                            .scaledToFit()
+                            .foregroundColor(colorScheme == .dark ? .white : .black)
+                    })
+                    .sheet(isPresented: $settingSelected, content: {
+                        SettingView()
+                    })
+                })
+            }
         }
-        .navigationViewStyle(.stack)
-
     }
 }
 

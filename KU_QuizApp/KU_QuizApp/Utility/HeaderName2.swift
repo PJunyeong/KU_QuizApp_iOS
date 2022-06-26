@@ -25,8 +25,10 @@ func HeaderName2(key: String, value: Int) -> String {
     } else {
         if value == 0 {
             return "방금 전"
-        } else {
+        } else if value <= 6 {
             return "\(value) 시간 전"
+        } else {
+            return "오늘"
         }
     }
 }

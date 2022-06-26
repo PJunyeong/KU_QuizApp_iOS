@@ -43,6 +43,7 @@ class Quiz: Identifiable, ObservableObject {
             let data = try Data(contentsOf: url)
             let bookmarks = try JSONDecoder().decode([Bookmark].self, from: data)
             self.bookmarks = bookmarks
+            print("bookmark load success")
         } catch {
             print("bookmark load failed")
         }
@@ -64,6 +65,7 @@ class Quiz: Identifiable, ObservableObject {
             let data = try Data(contentsOf: url)
             let notes = try JSONDecoder().decode([Note].self, from: data)
             self.notes = notes
+            print("note load success")
         } catch {
             print("note load failed")
         }
@@ -85,6 +87,7 @@ class Quiz: Identifiable, ObservableObject {
             let data = try Data(contentsOf: url)
             let scores = try JSONDecoder().decode([Score].self, from: data)
             self.scores = scores
+            print("score load success")
         } catch {
             print("score load failed")
         }

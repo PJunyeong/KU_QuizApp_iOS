@@ -47,7 +47,7 @@ struct QuestionNavBarView: View {
         .padding(.bottom)
         .padding(.top, SafeAreaTop())
         .padding(.top, 20)
-        .background(.white)
+        .background(Color(UIColor.systemBackground))
         .shadow(color: Color.black.opacity(0.05), radius: 5, x: 0, y: 5)
         .alert("문제를 그만 푸시겠습니까?", isPresented: $showBackAlert, actions: {
             Button("네. 그만 풀겠습니다", role: .destructive) {

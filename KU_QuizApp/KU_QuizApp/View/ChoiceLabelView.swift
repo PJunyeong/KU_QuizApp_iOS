@@ -29,7 +29,7 @@ struct ChoiceLabelView: View {
             Spacer()
         }
         .contentShape(Rectangle())
-        .background(showInfo && choiceInfo.choiceNum == answer ? .green : .white)
+        .background(showInfo && choiceInfo.choiceNum == answer ? .green : Color(UIColor.systemBackground))
         .onTapGesture {
             selectedNum = selectedNum == choiceInfo.choiceNum ? 0 : choiceInfo.choiceNum
             quiz.scores[scoreIdx].setAnswer(questionIdx: questionIdx, answer: selectedNum)
