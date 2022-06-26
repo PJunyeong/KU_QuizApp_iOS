@@ -29,12 +29,12 @@ struct ChoiceLabelView: View {
             Spacer()
         }
         .contentShape(Rectangle())
-        .background(showInfo && choiceInfo.choiceNum == answer ? .accentColor.opacity(0.5) : Color(UIColor.systemBackground))
         .onTapGesture {
             selectedNum = selectedNum == choiceInfo.choiceNum ? 0 : choiceInfo.choiceNum
             quiz.scores[scoreIdx].setAnswer(questionIdx: questionIdx, answer: selectedNum)
         }
         .disabled(isAnswerShown)
+        .background(showInfo && choiceInfo.choiceNum == answer ? .accentColor.opacity(0.5) : Color(UIColor.systemBackground))
     }
 }
 
@@ -46,5 +46,7 @@ struct ChoiceLabelView_Previews: PreviewProvider {
     static var previews: some View {
         ChoiceLabelView(choiceInfo: choiceInfo, answer: 1, scoreIdx: 0, questionIdx: 1, isAnswerShown: false, selectedNum: .constant(1), showInfo: .constant(false))
             .environmentObject(quiz)
+            .previewLayout(.sizeThatFits)
+            .preferredColorScheme(.dark)
     }
 }

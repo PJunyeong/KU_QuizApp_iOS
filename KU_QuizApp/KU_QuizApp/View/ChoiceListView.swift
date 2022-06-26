@@ -33,6 +33,8 @@ struct ChoiceListView_Previews: PreviewProvider {
     static let question = Question(choice1: "보기1", choice1Detail: "보기 설명", choice2: "보기2", choice2Detail: "보기 설명", choice3: "보기3", choice3Detail: "보기 설명", choice4: "보기4", choice4Detail: "보기 설명", number: 1, order: 0, question: "문제 디테일 설명", questionDetail: "디테일 설명", testNum: 10, type: 1, answer: 1)
     static var previews: some View {
         ChoiceListView(question: question, scoreIdx: scoreIdx, questionIdx: questionIdx, isAnswerShown: false, showInfo: .constant(false))
+            .preferredColorScheme(.dark)
+            .previewLayout(.sizeThatFits)
             .environmentObject(quiz)
     }
 }

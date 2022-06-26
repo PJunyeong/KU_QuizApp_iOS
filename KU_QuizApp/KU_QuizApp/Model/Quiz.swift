@@ -86,7 +86,7 @@ class Quiz: Identifiable, ObservableObject {
             let url = DocumentDirectory().appendingPathComponent("score")
             let data = try Data(contentsOf: url)
             let scores = try JSONDecoder().decode([Score].self, from: data)
-            self.scores = scores
+            self.scores = scores            
             print("score load success")
         } catch {
             print("score load failed")

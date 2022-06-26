@@ -25,6 +25,9 @@
 		4A34506F286780440008AC8A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A34506E286780440008AC8A /* OnboardingView.swift */; };
 		4A345071286785A50008AC8A /* SliderTabIdx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A345070286785A50008AC8A /* SliderTabIdx.swift */; };
 		4A34507328678CF40008AC8A /* SelectedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A34507228678CF40008AC8A /* SelectedItem.swift */; };
+		4A3450752868232A0008AC8A /* SettingLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3450742868232A0008AC8A /* SettingLabelView.swift */; };
+		4A345077286823320008AC8A /* SettingRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A345076286823320008AC8A /* SettingRowView.swift */; };
+		4A34507A286830380008AC8A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4A34507C286830380008AC8A /* Localizable.strings */; };
 		4A4755692864BCB300AFC321 /* NoteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4755682864BCB200AFC321 /* NoteListView.swift */; };
 		4A47556B2864BCBD00AFC321 /* NoteLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A47556A2864BCBD00AFC321 /* NoteLabelView.swift */; };
 		4AA41B5F2861A4C4002D4D86 /* KU_QuizAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA41B5E2861A4C4002D4D86 /* KU_QuizAppApp.swift */; };
@@ -84,6 +87,10 @@
 		4A34506E286780440008AC8A /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		4A345070286785A50008AC8A /* SliderTabIdx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderTabIdx.swift; sourceTree = "<group>"; };
 		4A34507228678CF40008AC8A /* SelectedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedItem.swift; sourceTree = "<group>"; };
+		4A3450742868232A0008AC8A /* SettingLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingLabelView.swift; sourceTree = "<group>"; };
+		4A345076286823320008AC8A /* SettingRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRowView.swift; sourceTree = "<group>"; };
+		4A34507B286830380008AC8A /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4A34507D2868308A0008AC8A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4A4755682864BCB200AFC321 /* NoteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListView.swift; sourceTree = "<group>"; };
 		4A47556A2864BCBD00AFC321 /* NoteLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteLabelView.swift; sourceTree = "<group>"; };
 		4AA41B5B2861A4C4002D4D86 /* KU_QuizApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KU_QuizApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -163,6 +170,7 @@
 				4AA41B6C2861A4FA002D4D86 /* Model */,
 				4AA41B622861A4C5002D4D86 /* Assets.xcassets */,
 				4AA41B642861A4C5002D4D86 /* Preview Content */,
+				4A34507C286830380008AC8A /* Localizable.strings */,
 			);
 			path = KU_QuizApp;
 			sourceTree = "<group>";
@@ -219,6 +227,8 @@
 				4A34506628676BB00008AC8A /* ScoreGridLabelView.swift */,
 				4A34506828676EFE0008AC8A /* ScoreSelectOrderView.swift */,
 				4A34506A286773470008AC8A /* AnswerView.swift */,
+				4A3450742868232A0008AC8A /* SettingLabelView.swift */,
+				4A345076286823320008AC8A /* SettingRowView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -313,6 +323,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = 4AA41B522861A4C4002D4D86;
 			productRefGroup = 4AA41B5C2861A4C4002D4D86 /* Products */;
@@ -329,6 +340,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A34507A286830380008AC8A /* Localizable.strings in Resources */,
 				4AA41B862861ADB4002D4D86 /* questionBox.json in Resources */,
 				4AA41B872861ADB4002D4D86 /* questions.json in Resources */,
 				4AA41B662861A4C5002D4D86 /* Preview Assets.xcassets in Resources */,
@@ -373,6 +385,7 @@
 				4AA41BB2286290F0002D4D86 /* InfoLabelView.swift in Sources */,
 				4A3450552866F3820008AC8A /* ScoreLabelView.swift in Sources */,
 				4A3450572866F8DB0008AC8A /* HeaderName.swift in Sources */,
+				4A3450752868232A0008AC8A /* SettingLabelView.swift in Sources */,
 				4AA41B902861B280002D4D86 /* MainView.swift in Sources */,
 				4AA41B5F2861A4C4002D4D86 /* KU_QuizAppApp.swift in Sources */,
 				4AA41B9C2861B842002D4D86 /* SegmentedPickerView.swift in Sources */,
@@ -386,6 +399,7 @@
 				4AA41BBC286297C9002D4D86 /* ChoiceListView.swift in Sources */,
 				4A34506728676BB00008AC8A /* ScoreGridLabelView.swift in Sources */,
 				4AA41B962861B41B002D4D86 /* NoteView.swift in Sources */,
+				4A345077286823320008AC8A /* SettingRowView.swift in Sources */,
 				4AA41B892861ADC5002D4D86 /* CodableBundleExtension.swift in Sources */,
 				4A34506F286780440008AC8A /* OnboardingView.swift in Sources */,
 				4AA41B982861B420002D4D86 /* ScoreView.swift in Sources */,
@@ -399,6 +413,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4A34507C286830380008AC8A /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4A34507B286830380008AC8A /* ko */,
+				4A34507D2868308A0008AC8A /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		4AA41B672861A4C5002D4D86 /* Debug */ = {

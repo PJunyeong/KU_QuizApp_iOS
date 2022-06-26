@@ -33,5 +33,6 @@ struct QuestionSubView_Previews: PreviewProvider {
     static var previews: some View {
         QuestionSubView(scoreIdx: 0, questionIdx: 50)
             .environmentObject(quiz)
+            .preferredColorScheme(.dark)
     }
 }
