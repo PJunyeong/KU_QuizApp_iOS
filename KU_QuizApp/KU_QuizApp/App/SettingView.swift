@@ -35,9 +35,7 @@ struct SettingView: View {
                     ) {
                         SettingRowView(name: "개발자", content: "Junyeong Park", linkLabel: nil, linkDestination: nil)
                         SettingRowView(name: "이메일", content: "j_aion@naver.com", linkLabel: nil, linkDestination: nil)
-                        SettingRowView(name: "호환성", content: "iOS 14", linkLabel: nil, linkDestination: nil)
-                        // TODO: 앱 출시 경우 호환성 테스트 어떻게 하는지 체크
-                        SettingRowView(name: "언어", content: "SwiftUI 3.0", linkLabel: nil, linkDestination: nil)
+                        SettingRowView(name: "언어", content: "Swift", linkLabel: nil, linkDestination: nil)
                         // TODO: 개발 언어 표시 방법 체크
                         SettingRowView(name: "버전", content: "1.0", linkLabel: nil, linkDestination: nil)
 

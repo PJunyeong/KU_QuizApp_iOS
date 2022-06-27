@@ -33,10 +33,15 @@ struct SelectOrderView: View {
             Button(action: {
                 isOrderShown.toggle()
             }, label: {
-                Text(OrderString(orderSelected:orderSelected))
-                    .font(.headline)
-                    .fontWeight(.bold)
-                    .padding(.horizontal, 20)
+                HStack {
+                    Spacer()
+                    Image(systemName: "chevron.down")
+                        .font(.headline)
+                    Text(OrderString(orderSelected:orderSelected))
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .padding(.trailing, 20)
+                }
             })
             .confirmationDialog(
                 "정렬 기준을 선택하세요",

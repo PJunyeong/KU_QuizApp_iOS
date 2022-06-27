@@ -49,21 +49,25 @@ struct QuestionNavBarView: View {
         .padding(.top, 20)
         .background(Color(UIColor.systemBackground))
         .shadow(color: Color.black.opacity(0.05), radius: 5, x: 0, y: 5)
-        .alert("문제를 그만 푸시겠습니까?", isPresented: $showBackAlert, actions: {
-            Button("네. 그만 풀겠습니다", role: .destructive) {
+        .alert("문제를 다음에 푸시겠습니까?", isPresented: $showBackAlert, actions: {
+            Button(action: {
                 dismiss()
-            }
+            }, label: {
+                Text("네. 다음에 풀겠습니다.")
+            })
             Button("아니오", role: .cancel) {
             }
         }, message: {
             Text("지금까지 푼 기록이 저장됩니다")
         })
         .alert(Text(quiz.scores[scoreIdx].isAllChecked ? "모든 문제를 풀었습니다. 제출하시겠습니까?" : "아직 풀지 않은 문제가 있습니다"), isPresented: $showSubmitAlert) {
-            Button("네. 제출하겠습니다", role: .destructive) {
+            Button(action: {
                 quiz.scores[scoreIdx].submit()
                 quiz.setnotes(scoreIdx: scoreIdx)
                 isSubmitted.toggle()
-            }
+            }, label: {
+                Text("네. 제출하겠습니다.")
+            })
             Button("아니오", role: .cancel) {}
         }
         .fullScreenCover(isPresented: $isSubmitted, content: {

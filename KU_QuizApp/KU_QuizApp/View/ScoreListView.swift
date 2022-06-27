@@ -17,6 +17,7 @@ struct ScoreListView: View {
     var body: some View {
         VStack {
             SelectOrderView(reset: 2, orderRange: orderRange, orderSelected: $orderSelected)
+                .padding(.bottom, 10)
                 .environmentObject(quiz)
             if orderSelected == 3 {
                 List {

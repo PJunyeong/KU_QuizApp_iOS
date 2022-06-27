@@ -16,10 +16,14 @@ struct ScoreSelectOrderView: View {
             Button(action: {
                 isOrderShown.toggle()
             }, label: {
-                Text(ScoreOrderString(scoreSelected:scoreSelected))
-                    .font(.headline)
-                    .fontWeight(.bold)
-                    .padding(.horizontal, 20)
+                HStack {
+                    Image(systemName: "chevron.down")
+                        .font(.headline)
+                    Text(ScoreOrderString(scoreSelected:scoreSelected))
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .padding(.trailing, 20)
+                }
             })
             .confirmationDialog(
                 "확인할 문제를 선택하세요",

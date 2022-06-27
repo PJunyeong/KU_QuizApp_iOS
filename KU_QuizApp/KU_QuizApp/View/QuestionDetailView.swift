@@ -12,7 +12,7 @@ struct QuestionDetailView: View {
     @Binding var showInfo: Bool
     var body: some View {
         Text(showInfo && !question.questionDetail.isEmpty ? question.questionDetail : question.question)
-            .font(.title)
+            .font(question.type == 6 ? .title : .system(size: CustomSize.questionFontSize))
             .fontWeight(.bold)
             .multilineTextAlignment(.leading)
             .padding(.horizontal, 10)

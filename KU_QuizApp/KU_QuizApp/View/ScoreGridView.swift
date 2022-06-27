@@ -23,7 +23,7 @@ struct ScoreGridView: View {
                         let newIdx = answers.firstIndex(of: idx) ?? 0
                         sliderTabIdx = SliderTabIdx(questionNum: Double(newIdx + 1), selectedQuestion: newIdx)
                     }, label: {
-                        ScoreGridLabelView(number: idx + 1)
+                        ScoreGridLabelView(isRight: quiz.scores[scoreIdx].isRight(questionNum: idx), number: idx + 1)
                     })
                     .sheet(item: $sliderTabIdx) { stIdx in
                         AnswerView(scoreIdx: scoreIdx, questionNum: stIdx.questionNum, selectedQuestion: stIdx.selectedQuestion, scoreSelected: $scoreSelected)

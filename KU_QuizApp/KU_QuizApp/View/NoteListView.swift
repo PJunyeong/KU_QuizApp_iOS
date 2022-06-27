@@ -10,6 +10,7 @@ import SwiftUI
 struct NoteListView: View {
     @EnvironmentObject var quiz: Quiz
     @State private var selectedItem: SelectedItem? = nil
+    @State private var noteExpanded: Bool = false
     @Binding var orderSelected: Int
     let orderRange: [Int]
     let isNote: Bool
@@ -17,6 +18,7 @@ struct NoteListView: View {
     var body: some View {
         VStack {
             SelectOrderView(reset: isNote ? 0 : 1, orderRange: orderRange, orderSelected: $orderSelected)
+                .padding(.bottom, 10)
                 .environmentObject(quiz)
             if isNote {
                 List {

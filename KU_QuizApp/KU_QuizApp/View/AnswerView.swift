@@ -14,11 +14,14 @@ struct AnswerView: View {
     @State var selectedQuestion: Int
     @Binding var scoreSelected: Int
     var body: some View {
-        VStack(alignment: .center) {            
-            SliderView(questionNum: $questionNum, selectedQuestion: $selectedQuestion, questionCnt: quiz.scores[scoreIdx].selectedAnswers(scoreSelected: scoreSelected).count)
-            // 주어진 조건에 따른 문제만 슬라이딩/탭으로 보여주기
+        VStack(alignment: .center) {
+            let questionCnt = quiz.scores[scoreIdx].selectedAnswers(scoreSelected: scoreSelected).count
+            if questionCnt > 1 {
+                SliderView(questionNum: $questionNum, selectedQuestion: $selectedQuestion, questionCnt: questionCnt)
+                // 주어진 조건에 따른 문제만 슬라이딩/탭으로 보여주기
+            }
             TabView(selection: $selectedQuestion) {
-                ForEach(0..<quiz.scores[scoreIdx].questionCnt, id:\.self) { idx in
+                ForEach(0..<questionCnt, id:\.self) { idx in
                     let question = quiz.fetchQuestion(testNum: quiz.scores[scoreIdx].testNum, scoreIdx: scoreIdx, questionIdx: idx)
                     AnswerSubView(testNum: question.testNum, number: question.number, answer: quiz.scores[scoreIdx].answers[idx])
                         .tag(idx)

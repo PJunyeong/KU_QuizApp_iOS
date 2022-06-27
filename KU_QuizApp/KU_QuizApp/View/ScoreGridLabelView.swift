@@ -8,21 +8,19 @@
 import SwiftUI
 
 struct ScoreGridLabelView: View {
-    @Environment(\.colorScheme) var colorScheme
+    let isRight: Bool
     let number: Int
     var body: some View {
-        let color = colorScheme == .dark ? Color.white : Color.black
         Text("\(number)")
             .font(.title)
             .fontWeight(.bold)
-            .foregroundColor(color)
-        // TODO: 정렬 조건 또는 정답/오답에 따른 색깔 여부 체크
+            .foregroundColor(isRight ? .green : .red)
     }
 }
 
 struct ScoreGridLabelView_Previews: PreviewProvider {
     static var previews: some View {
-        ScoreGridLabelView(number: 100)
+        ScoreGridLabelView(isRight: false, number: 100)
             .previewLayout(.sizeThatFits)
     }
 }

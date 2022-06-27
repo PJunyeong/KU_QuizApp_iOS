@@ -98,6 +98,18 @@ struct Score: Identifiable, Codable {
         }
     }
     
+    func isRight(questionNum: Int) -> Bool {
+        guard isSubmitted else {
+            return false
+        }
+        
+        if submittedRight.contains(questionNum) == true {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     var isAllChecked: Bool {
         return answers.filter{$0 != 0}.count == questionCnt
     }
