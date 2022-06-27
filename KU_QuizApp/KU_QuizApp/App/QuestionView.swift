@@ -14,7 +14,7 @@ struct QuestionView: View {
     @State var selectedQuestion: Int = 0
     var body: some View {
         VStack(alignment: .center) {
-            QuestionNavBarView(scoreIdx: scoreIdx)
+            QuestionNavBarView(scoreIdx: scoreIdx, selectedQuestion: selectedQuestion)
             SliderView(questionNum: $questionNum, selectedQuestion: $selectedQuestion, questionCnt: quiz.scores[scoreIdx].questionCnt)
             TabView(selection: $selectedQuestion) {
                 ForEach(0..<quiz.scores[scoreIdx].questionCnt, id:\.self) { idx in

@@ -21,6 +21,7 @@ struct Score: Identifiable, Codable {
     var submittedScore = 0
     var submittedRight: [Int] = []
     var submittedWrong: [Int] = []
+    var lastIndex = 0
     
     mutating func rateScore() -> Void {
         var submittedRight = [Int]()
@@ -81,10 +82,6 @@ struct Score: Identifiable, Codable {
         self.date = Date()
         self.isSubmitted = true
         rateScore()
-    }
-    
-    var lastIndex: Int {
-        return answers.lastIndex(where: {$0 != 0}) ?? 0
     }
     
     func selectedAnswers(scoreSelected: Int) -> [Int] {

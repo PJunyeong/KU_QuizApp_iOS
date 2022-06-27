@@ -11,6 +11,7 @@ struct QuestionNavBarView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var quiz: Quiz
     let scoreIdx: Int
+    let selectedQuestion: Int
     @State private var isAnimated: Bool = false
     @State private var showBackAlert: Bool = false
     @State private var showSubmitAlert: Bool = false
@@ -51,6 +52,7 @@ struct QuestionNavBarView: View {
         .shadow(color: Color.black.opacity(0.05), radius: 5, x: 0, y: 5)
         .alert("문제를 다음에 푸시겠습니까?", isPresented: $showBackAlert, actions: {
             Button(action: {
+                quiz.scores[scoreIdx].lastIndex = selectedQuestion
                 dismiss()
             }, label: {
                 Text("네. 다음에 풀겠습니다.")
@@ -78,7 +80,7 @@ struct QuestionNavBarView: View {
 struct QuestionNavBarView_Previews: PreviewProvider {
     static let quiz = Quiz()
     static var previews: some View {
-        QuestionNavBarView(scoreIdx: 0)
+        QuestionNavBarView(scoreIdx: 0, selectedQuestion: 0)
             .environmentObject(quiz)
             .previewLayout(.sizeThatFits)
             .padding()
