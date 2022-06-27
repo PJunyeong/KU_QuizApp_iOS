@@ -27,7 +27,6 @@ struct ScoreGridView: View {
                     })
                     .sheet(item: $sliderTabIdx) { stIdx in
                         AnswerView(scoreIdx: scoreIdx,
-                                   isScoreChecked: true,
                                    questionNum: stIdx.questionNum, selectedQuestion: stIdx.selectedQuestion, scoreSelected: $scoreSelected)
                     }
                     }
