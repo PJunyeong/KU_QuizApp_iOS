@@ -10,6 +10,7 @@ import SwiftUI
 struct AnswerView: View {
     @EnvironmentObject var quiz: Quiz
     let scoreIdx: Int
+    var isRightChecked: Bool = false
     @State var questionNum: Double
     @State var selectedQuestion: Int
     @Binding var scoreSelected: Int
@@ -23,9 +24,11 @@ struct AnswerView: View {
             }
             TabView(selection: $selectedQuestion) {
                 ForEach(answers, id:\.self) { idx in
+                    let newIdx = answers.firstIndex(of: idx) ?? 0
                     let question = quiz.fetchQuestion(testNum: quiz.scores[scoreIdx].testNum, scoreIdx: scoreIdx, questionIdx: idx)
-                    AnswerSubView(testNum: question.testNum, number: question.number, answer: quiz.scores[scoreIdx].answers[idx])
-                        .tag(idx)
+                    let isRight = isRightChecked ? quiz.scores[scoreIdx].isRight(questionNum: idx) : nil
+                    AnswerSubView(isRight: isRight,testNum: question.testNum, number: question.number, answer: quiz.scores[scoreIdx].answers[idx])
+                        .tag(newIdx)
                         .environmentObject(quiz)
                 }
             }
