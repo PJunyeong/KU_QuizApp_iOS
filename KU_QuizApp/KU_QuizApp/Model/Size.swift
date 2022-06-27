@@ -45,5 +45,6 @@ enum CustomSize {
     static var resultIconHeight: CGFloat { buttonWidth }
     
     static var questionFontSize: CGFloat {CustomSize.fullWidth * (100 / 844)}
+    static var choiceIconWidth: CGFloat {CustomSize.fullWidth * 0.25}
     
 }
