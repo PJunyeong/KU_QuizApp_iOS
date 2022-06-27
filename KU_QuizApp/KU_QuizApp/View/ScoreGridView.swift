@@ -23,10 +23,12 @@ struct ScoreGridView: View {
                         let newIdx = answers.firstIndex(of: idx) ?? 0
                         sliderTabIdx = SliderTabIdx(questionNum: Double(newIdx + 1), selectedQuestion: newIdx)
                     }, label: {
-                        ScoreGridLabelView(isRight: quiz.scores[scoreIdx].isRight(questionNum: idx), number: idx + 1)
+                        ScoreGridLabelView(isRight: quiz.scores[scoreIdx].isRight(questionNum:idx), number: idx + 1)
                     })
                     .sheet(item: $sliderTabIdx) { stIdx in
-                        AnswerView(scoreIdx: scoreIdx, questionNum: stIdx.questionNum, selectedQuestion: stIdx.selectedQuestion, scoreSelected: $scoreSelected)
+                        AnswerView(scoreIdx: scoreIdx,
+                                   isScoreChecked: true,
+                                   questionNum: stIdx.questionNum, selectedQuestion: stIdx.selectedQuestion, scoreSelected: $scoreSelected)
                     }
                     }
                 }
@@ -44,7 +46,7 @@ struct ScoreGridView_Previews: PreviewProvider {
     static let quiz = Quiz()
     static var previews: some View {
         let scoreIdx = 0
-        ScoreGridView(scoreIdx: scoreIdx, scoreSelected: .constant(1))
+        ScoreGridView(scoreIdx: scoreIdx, scoreSelected: .constant(0))
             .environmentObject(quiz)
     }
 }

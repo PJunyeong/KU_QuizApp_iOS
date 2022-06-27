@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AnswerSubView: View {
     @EnvironmentObject var quiz: Quiz
+    var isRight: Bool? = nil
     let testNum: Int
     let number: Int
     let answer: Int
@@ -18,6 +19,19 @@ struct AnswerSubView: View {
             let question = quiz.questions.filter{$0.testNum == testNum && $0.number == number}[0]
             InfoLabelView(testNum: question.testNum, questionNum: question.number, type: question.type, isBookmarked: quiz.isBookmarked(testNum: question.testNum, number: question.number, type: question.type),showInfo: $showInfo)
             ScrollView(showsIndicators: false) {
+                if isRight != nil {
+                    if isRight == true {
+                        Text("정답")
+                            .font(.system(.title3, design: .rounded))
+                            .fontWeight(.bold)
+                            .foregroundColor(.green)
+                    } else {
+                        Text("오답")
+                            .font(.system(.title3, design: .rounded))
+                            .fontWeight(.bold)
+                            .foregroundColor(.red)
+                    }
+                }
                 QuestionDescriptView(testNum: question.testNum, number: question.number, questionDescript: quiz.questionDescript(type: question.type), isTest: false)
                 QuestionDetailView(question: question, showInfo: $showInfo)
                 QuestionBoxView(questionBox: quiz.fetchQuestionBox(testNum: question.testNum, order: question.order))
