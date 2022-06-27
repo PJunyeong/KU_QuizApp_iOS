@@ -9,6 +9,7 @@ import SwiftUI
 
 struct InfoLabelView: View {
     // TODO: 타이머 설정 -> 유저 테스트 후 취합하기 (UserDefaults로 체크)
+    @AppStorage("isTimerOn") var isTimerOn: Bool = UserDefaults.standard.bool(forKey: "isTimerOn")
     @EnvironmentObject var quiz: Quiz
     let testNum: Int
     let questionNum: Int
@@ -26,7 +27,9 @@ struct InfoLabelView: View {
             })
             Button(action: {
                 showInfo.toggle()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {showInfo.toggle()})
+                if isTimerOn {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {showInfo.toggle()})
+                }
             }, label: {
                 Image(systemName: showInfo ? "info.circle.fill" : "info.circle")
             })

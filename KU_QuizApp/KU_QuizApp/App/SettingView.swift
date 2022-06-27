@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SettingView: View {
+    @AppStorage("isTimerOn") var isTimerOn: Bool = UserDefaults.standard.bool(forKey: "isTimerOn")
     var body: some View {
         NavigationView {
             ScrollView(.vertical, showsIndicators: false) {
@@ -45,6 +46,27 @@ struct SettingView: View {
                                 SettingLabelView(labelString: "저작권 정보", labelImage: "link.circle")
                     ) {
                         SettingRowView(name: "문제 출처", content: nil, linkLabel: "한자한문연구소", linkDestination: "https://kuhjhm.korea.ac.kr/hjhm/exam/past_q.do")
+                    }
+                    
+                    // 4: Timer 설정
+                    GroupBox(label:
+                                SettingLabelView(labelString: "타이머", labelImage: "timer")
+                    ) {
+                        Toggle(isOn: $isTimerOn) {
+                            if isTimerOn {
+                                Text("힌트 타이머 ON".uppercased())
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.green)
+                            } else {
+                                Text("힌트 타이머 OFF".uppercased())
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.secondary)
+                            }
+                        }.padding()
+                            .background(
+                                Color(UIColor.tertiarySystemBackground)
+                                    .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                            )
                     }
                 }
                 .navigationTitle("설정")
