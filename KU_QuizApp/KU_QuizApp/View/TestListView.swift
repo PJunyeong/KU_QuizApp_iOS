@@ -35,7 +35,9 @@ struct TestListView: View {
                     TestLabelView(testLabelName: "기출 \(testNum)회")
                 })
                 .fullScreenCover(isPresented: $isTestClicked, content: {
-                    QuestionView(scoreIdx: scoreIdx).environmentObject(quiz)
+                    QuestionView(scoreIdx: scoreIdx, questionNum: Double(quiz.scores[scoreIdx].lastIndex + 1), selectedQuestion: quiz.scores[scoreIdx].lastIndex)
+                        .environmentObject(quiz)
+                    // 지난 번부터 풀었던 마지막 번호에서 시작
                 })
                 .alert("이전에 풀었던 기록이 남아 있습니다",
                        isPresented: $isScoreIdxCached,
@@ -89,7 +91,8 @@ struct TestListView: View {
                         }
                     }
                     .fullScreenCover(isPresented: $isConfirmationClicked, content: {
-                        QuestionView(scoreIdx: scoreIdx).environmentObject(quiz)
+                        QuestionView(scoreIdx: scoreIdx, questionNum: Double(quiz.scores[scoreIdx].lastIndex + 1), selectedQuestion: quiz.scores[scoreIdx].lastIndex)
+                            .environmentObject(quiz)
                     })
                     .alert("이전에 풀었던 기록이 남아 있습니다",
                            isPresented: $isScoreIdxCached,

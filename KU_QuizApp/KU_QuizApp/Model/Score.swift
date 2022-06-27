@@ -83,6 +83,10 @@ struct Score: Identifiable, Codable {
         rateScore()
     }
     
+    var lastIndex: Int {
+        return answers.lastIndex(where: {$0 != 0}) ?? 0
+    }
+    
     func selectedAnswers(scoreSelected: Int) -> [Int] {
         
         guard isSubmitted else {
