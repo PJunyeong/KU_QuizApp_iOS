@@ -1,5 +1,5 @@
 //
-//  Items.swift
+//  Quiz.swift
 //  KU_QuizApp
 //
 //  Created by Junyeong Park on 2022/06/21.

@@ -32,6 +32,7 @@ struct SliderView: View {
                 .foregroundColor(.accentColor)
         }
         .padding(.horizontal, 20)
+        .padding(.top, 20)
 
     }
 }
