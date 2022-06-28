@@ -22,96 +22,100 @@ struct TestListView: View {
     @State private var scoreIdx: Int = 0
     @Binding var isTest: Bool
     var body: some View {
-        if isTest {
-            ForEach(testNums, id:\.self) { testNum in
-                Button(action: {
-                    self.testNum = testNum
-                    isScoreIdxCached = quiz.isScoreCached(isTest: true, testNum: testNum, type: nil, questionCnt: 100)
-                    if !isScoreIdxCached {
-                        scoreIdx = quiz.scoreIdxCached(isTest: true, testNum: testNum, type: nil, questionCnt: 100)
-                        isTestClicked.toggle()
-                    }
-                }, label: {
-                    TestLabelView(testLabelName: "기출 \(testNum)회")
-                })
-                .fullScreenCover(isPresented: $isTestClicked, content: {
-                    QuestionView(scoreIdx: scoreIdx, questionNum: Double(quiz.scores[scoreIdx].lastIndex + 1), selectedQuestion: quiz.scores[scoreIdx].lastIndex)
-                        .environmentObject(quiz)
-                    // 지난 번부터 풀었던 마지막 번호에서 시작
-                })
-                .alert("이전에 풀었던 기록이 남아 있습니다",
-                       isPresented: $isScoreIdxCached,
-                       actions: {
+        
+        VStack(alignment: .center, spacing: 15) {
+            if isTest {
+                ForEach(testNums, id:\.self) { testNum in
                     Button(action: {
-                        quiz.removeScoreIdx(scoreIdx: scoreIdx)
-                        scoreIdx = quiz.scoreIdxCached(isTest: true, testNum: self.testNum, type: nil, questionCnt: 100)
-                        isTestClicked.toggle()
-                    }, label: {
-                      Text("다시 시작")
-                    })
-                    Button(action: {
-                        scoreIdx = quiz.scoreIdxCached(isTest: true, testNum: self.testNum, type: nil, questionCnt: 100)
-                        isTestClicked.toggle()
-                    }, label: {
-                        Text("이전부터 풀기")
-                    })
-                })
-            }
-        } else {
-            ForEach(typeNums, id:\.self) { typeNum in
-                TestLabelView(testLabelName: "유형 0\(typeNum)번")
-                    .onTapGesture {
-                        type = typeNum
-                        isConfirmationShown.toggle()
-                    }
-                    .confirmationDialog(
-                        "유형별 문제 개수를 선택하세요",
-                        isPresented: $isConfirmationShown,
-                        titleVisibility: .visible
-                    ) {
-                        ForEach(questionCnts, id:\.self) { qCnt in
-                            Button(action: {
-                                withAnimation {
-                                    self.questionCnt = qCnt
-                                    isScoreIdxCached = quiz.isScoreCached(isTest: false, testNum: nil, type: type, questionCnt: self.questionCnt)
-                                    if !isScoreIdxCached {
-                                        scoreIdx = quiz.scoreIdxCached(isTest: false, testNum: nil, type: type, questionCnt: self.questionCnt)
-                                        isConfirmationClicked.toggle()
-                                    }
-                                }
-                            }, label: {
-                                Text("\(qCnt)개 풀기")
-                                    .tint(.accentColor)
-                            })
+                        self.testNum = testNum
+                        isScoreIdxCached = quiz.isScoreCached(isTest: true, testNum: testNum, type: nil, questionCnt: 100)
+                        if !isScoreIdxCached {
+                            scoreIdx = quiz.scoreIdxCached(isTest: true, testNum: testNum, type: nil, questionCnt: 100)
+                            isTestClicked.toggle()
                         }
-                        Button("다시 생각해볼게요", role: .cancel) {
-                            withAnimation {
-                                isConfirmationShown = false
-                            }
-                        }
-                    }
-                    .fullScreenCover(isPresented: $isConfirmationClicked, content: {
+                    }, label: {
+                        TestLabelView(testLabelName: "기출 \(testNum)회")
+                    })
+                    .fullScreenCover(isPresented: $isTestClicked, content: {
                         QuestionView(scoreIdx: scoreIdx, questionNum: Double(quiz.scores[scoreIdx].lastIndex + 1), selectedQuestion: quiz.scores[scoreIdx].lastIndex)
                             .environmentObject(quiz)
+                        // 지난 번부터 풀었던 마지막 번호에서 시작
                     })
                     .alert("이전에 풀었던 기록이 남아 있습니다",
                            isPresented: $isScoreIdxCached,
                            actions: {
                         Button(action: {
                             quiz.removeScoreIdx(scoreIdx: scoreIdx)
-                            scoreIdx = quiz.scoreIdxCached(isTest: false, testNum: nil, type: type, questionCnt: self.questionCnt)
-                            isConfirmationClicked.toggle()
+                            scoreIdx = quiz.scoreIdxCached(isTest: true, testNum: self.testNum, type: nil, questionCnt: 100)
+                            isTestClicked.toggle()
                         }, label: {
                           Text("다시 시작")
                         })
                         Button(action: {
-                            scoreIdx = quiz.scoreIdxCached(isTest: false, testNum: nil, type: type, questionCnt: self.questionCnt)
-                            isConfirmationClicked.toggle()
+                            scoreIdx = quiz.scoreIdxCached(isTest: true, testNum: self.testNum, type: nil, questionCnt: 100)
+                            isTestClicked.toggle()
                         }, label: {
                             Text("이전부터 풀기")
                         })
                     })
+                }
+            } else {
+                ForEach(typeNums, id:\.self) { typeNum in
+                    TestLabelView(testLabelName: "유형 0\(typeNum)번")
+                        .onTapGesture {
+                            type = typeNum
+                            isConfirmationShown.toggle()
+                        }
+                        .confirmationDialog(
+                            "유형별 문제 개수를 선택하세요",
+                            isPresented: $isConfirmationShown,
+                            titleVisibility: .visible
+                        ) {
+                            ForEach(questionCnts, id:\.self) { qCnt in
+                                Button(action: {
+                                    withAnimation {
+                                        self.questionCnt = qCnt
+                                        isScoreIdxCached = quiz.isScoreCached(isTest: false, testNum: nil, type: type, questionCnt: self.questionCnt)
+                                        if !isScoreIdxCached {
+                                            scoreIdx = quiz.scoreIdxCached(isTest: false, testNum: nil, type: type, questionCnt: self.questionCnt)
+                                            isConfirmationClicked.toggle()
+                                        }
+                                    }
+                                }, label: {
+                                    Text("\(qCnt)개 풀기")
+                                        .tint(.accentColor)
+                                })
+                            }
+                            Button("다시 생각해볼게요", role: .cancel) {
+                                withAnimation {
+                                    isConfirmationShown = false
+                                }
+                            }
+                        }
+                        .fullScreenCover(isPresented: $isConfirmationClicked, content: {
+                            QuestionView(scoreIdx: scoreIdx, questionNum: Double(quiz.scores[scoreIdx].lastIndex + 1), selectedQuestion: quiz.scores[scoreIdx].lastIndex)
+                                .environmentObject(quiz)
+                        })
+                        .alert("이전에 풀었던 기록이 남아 있습니다",
+                               isPresented: $isScoreIdxCached,
+                               actions: {
+                            Button(action: {
+                                quiz.removeScoreIdx(scoreIdx: scoreIdx)
+                                scoreIdx = quiz.scoreIdxCached(isTest: false, testNum: nil, type: type, questionCnt: self.questionCnt)
+                                isConfirmationClicked.toggle()
+                            }, label: {
+                              Text("다시 시작")
+                            })
+                            Button(action: {
+                                scoreIdx = quiz.scoreIdxCached(isTest: false, testNum: nil, type: type, questionCnt: self.questionCnt)
+                                isConfirmationClicked.toggle()
+                            }, label: {
+                                Text("이전부터 풀기")
+                            })
+                        })
+                }
             }
+
         }
     }
 }

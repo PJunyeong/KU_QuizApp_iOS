@@ -8,12 +8,18 @@
 import SwiftUI
 
 struct ScoreNavBarView: View {
+    @Environment(\.dismiss) var dismiss
     let questionTitle: String
     @State private var isAnimated: Bool = false
     var body: some View {
         HStack {
             Button(action: {
                 popToRootView()
+//                if navigationActive {
+//                    dismiss()
+//                } else {
+//                    popToRootView()
+//                }
             }, label: {
                 Image(systemName: "chevron.left")
                     .font(.headline)

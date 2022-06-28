@@ -20,10 +20,12 @@ struct SettingView: View {
                     {
                         Divider()
                         HStack(alignment: .center, spacing: 10) {
-                            Image(systemName: "gamecontroller")
-                            // TODO: 앱 로고로 변경
+                            Image("appstore")
+                                .resizable()
+                                .scaledToFit()
+                                .clipShape(Circle())
                             Spacer()
-                            Text("한자 기출 풀이를 위한 어플리케이션입니다. 기출별, 유형별 문제 선택 및 오답노트, 북마크, 점수 확인을 할 수 있습니다.")
+                            Text("고려대학교 졸업 한자 기출 풀이를 위한 어플리케이션입니다. 기출별, 유형별 문제 선택 및 오답노트, 북마크, 점수 확인을 할 수 있습니다.")
                                 .multilineTextAlignment(.center)
                                 .font(.footnote)
                         }
@@ -45,7 +47,7 @@ struct SettingView: View {
                     GroupBox(label:
                                 SettingLabelView(labelString: "저작권 정보", labelImage: "link.circle")
                     ) {
-                        SettingRowView(name: "문제 출처", content: nil, linkLabel: "한자한문연구소", linkDestination: "https://kuhjhm.korea.ac.kr/hjhm/exam/past_q.do")
+                        SettingRowView(name: "문제 출처", content: nil, linkLabel: "고려대학교 한자한문연구소", linkDestination: "https://kuhjhm.korea.ac.kr/hjhm/exam/past_q.do")
                     }
                     
                     // 4: Timer 설정

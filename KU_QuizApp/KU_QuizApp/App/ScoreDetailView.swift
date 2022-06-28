@@ -11,7 +11,7 @@ struct ScoreDetailView: View {
     @EnvironmentObject var quiz: Quiz
     @State var scoreSelected: Int = 0
     let scoreIdx: Int
-    var body: some View {
+    var body: some View {        
         VStack {
             ScoreNavBarView(questionTitle: quiz.scores[scoreIdx].questionTitle)
             Text(quiz.scores[scoreIdx].scoreCnt)

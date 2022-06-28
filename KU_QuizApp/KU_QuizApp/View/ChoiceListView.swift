@@ -17,13 +17,13 @@ struct ChoiceListView: View {
     @Binding var showInfo: Bool
     var body: some View {
         let choices = question.choice3.isEmpty && question.choice4.isEmpty ? [Choice(choiceNum: 1, choice: question.choice1, choiceDetail: question.choice1Detail), Choice(choiceNum: 2, choice: question.choice2, choiceDetail: question.choice2Detail)] : [Choice(choiceNum: 1, choice: question.choice1, choiceDetail: question.choice1Detail), Choice(choiceNum: 2, choice: question.choice2, choiceDetail: question.choice2Detail), Choice(choiceNum: 3, choice: question.choice3, choiceDetail: question.choice3Detail), Choice(choiceNum: 4, choice: question.choice4, choiceDetail: question.choice4Detail)]
-        ForEach(choices) { choice in
-            ChoiceLabelView(choiceInfo: choice, answer: question.answer, scoreIdx: scoreIdx, questionIdx: questionIdx, isAnswerShown: isAnswerShown, selectedNum: $selectedNum, showInfo: $showInfo)
-                .padding(.bottom, 5)
-                .environmentObject(quiz)
+        VStack {
+            ForEach (choices) { choice in
+                ChoiceLabelView(choiceInfo: choice, answer: question.answer, scoreIdx: scoreIdx, questionIdx: questionIdx, isAnswerShown: isAnswerShown, selectedNum: $selectedNum, showInfo: $showInfo)
+                    .padding(.leastNonzeroMagnitude)
+                    .environmentObject(quiz)
+            }
         }
-        Text("")
-        // 마지막 번호 이후 패딩 효과
     }
 }
 
@@ -34,7 +34,6 @@ struct ChoiceListView_Previews: PreviewProvider {
     static let question = Question(choice1: "보기입니다람쥐", choice1Detail: "보기 설명", choice2: "보기2입니다람쥐쥐", choice2Detail: "보기 설명", choice3: "보기3입니다!!!!", choice3Detail: "보기 설명", choice4: "보기4입니다!", choice4Detail: "보기 설명", number: 1, order: 0, question: "문제 디테일 설명", questionDetail: "디테일 설명", testNum: 10, type: 1, answer: 1)
     static var previews: some View {
         ChoiceListView(question: question, scoreIdx: scoreIdx, questionIdx: questionIdx, isAnswerShown: false, showInfo: .constant(false))
-            .preferredColorScheme(.dark)
             .previewLayout(.sizeThatFits)
             .environmentObject(quiz)
     }

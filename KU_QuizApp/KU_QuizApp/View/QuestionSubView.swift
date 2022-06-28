@@ -18,9 +18,13 @@ struct QuestionSubView: View {
             InfoLabelView(testNum: question.testNum, questionNum: question.number, type: question.type, isBookmarked: quiz.isBookmarked(testNum: question.testNum, number: question.number, type: question.type),showInfo: $showInfo)
             ScrollView(showsIndicators: false) {
                 QuestionDescriptView(testNum: question.testNum, number: question.number, questionDescript: quiz.questionDescript(type: question.type), isTest: quiz.scores[scoreIdx].isTest)
-                QuestionDetailView(question: question, showInfo: $showInfo)
-                QuestionBoxView(questionBox: quiz.fetchQuestionBox(testNum: question.testNum, order: question.order))
+                    QuestionDetailView(question: question, showInfo: $showInfo)
+                    QuestionBoxView(questionBox: quiz.fetchQuestionBox(testNum: question.testNum, order: question.order))
                     .opacity(question.type == 6 ? 1 : 0)
+                if question.type == 6 {
+                    Text("")
+                        .padding(.bottom, 20)
+                }
                 ChoiceListView(question: question, scoreIdx: scoreIdx, questionIdx: questionIdx, isAnswerShown: false, selectedNum: quiz.scores[scoreIdx].answers[questionIdx], showInfo: $showInfo)
                     .environmentObject(quiz)
             }

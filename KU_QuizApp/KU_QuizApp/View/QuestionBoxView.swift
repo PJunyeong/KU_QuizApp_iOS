@@ -14,7 +14,12 @@ struct QuestionBoxView: View {
             .font(.headline)
             .multilineTextAlignment(.leading)
             .lineSpacing(3)
-            .padding()
+            .padding(.all, 10)
+            .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(Color.gray.opacity(0.1))
+                        .padding(.horizontal, 5)
+                )
     }
 }
 

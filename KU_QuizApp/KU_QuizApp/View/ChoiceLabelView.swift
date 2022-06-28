@@ -17,10 +17,10 @@ struct ChoiceLabelView: View {
     @Binding var selectedNum: Int
     @Binding var showInfo: Bool
     var body: some View {
-        HStack {
+        HStack(alignment: .center) {
             Image(systemName: NumberImage(choiceNum: choiceInfo.choiceNum, selectedNum: selectedNum))
                 .font(.largeTitle)
-                .foregroundColor(.accentColor)
+                .foregroundColor(!isAnswerShown ? .accentColor : selectedNum != choiceInfo.choiceNum ? .accentColor : selectedNum == answer ? .green : .red)
                 .padding(.trailing, 10)
                 .padding(.leading, 20)
             // TODO: 전체 보기의 텍스트 박스 길이 리턴 -> 가장 큰 값 기준으로 가운데 정렬하기
@@ -30,14 +30,18 @@ struct ChoiceLabelView: View {
                 .multilineTextAlignment(.leading)
             Spacer()
         }
-        .padding(.init(top: 1, leading: 1, bottom: 1, trailing: 1))
         .contentShape(Rectangle())
+        .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .strokeBorder(.gray.opacity(0.2), lineWidth: 1)
+                    .background(RoundedRectangle(cornerRadius: 10).fill(showInfo && choiceInfo.choiceNum == answer ? Color.accentColor.opacity(0.5) : .clear))
+                    .padding(.horizontal, 10)
+            )
         .onTapGesture {
             selectedNum = selectedNum == choiceInfo.choiceNum ? 0 : choiceInfo.choiceNum
             quiz.scores[scoreIdx].setAnswer(questionIdx: questionIdx, answer: selectedNum)
         }
         .disabled(isAnswerShown)
-        .background(showInfo && choiceInfo.choiceNum == answer ? .accentColor.opacity(0.5) : Color(UIColor.systemBackground))
     }
 }
 

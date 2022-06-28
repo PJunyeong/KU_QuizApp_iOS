@@ -25,14 +25,11 @@ struct NoteListView: View {
                     ForEach(quiz.noteSections(orderSelected: orderSelected), id:\.self) { section in
                         Section {
                             ForEach(quiz.noteSection(orderSelected: orderSelected, section: section)) { note in
-                                Button(action: {
-                                    selectedItem = SelectedItem(testNum: note.testNum, number: note.number)
-                                }, label: {
-                                    NoteLabelView(note: note, orderSelected: orderSelected)
-                                })
-                                .sheet(item: $selectedItem) { item in
-                                    AnswerSubView(testNum: item.testNum, number: item.number, answer: 0)
+                                NavigationLink {
+                                    AnswerSubView(testNum: note.testNum, number: note.number, answer: 0, showInfo: true)
                                         .environmentObject(quiz)
+                                } label: {
+                                    NoteLabelView(note: note, orderSelected: orderSelected)
                                 }
                             }
                             .onDelete {
@@ -50,15 +47,11 @@ struct NoteListView: View {
                     ForEach(quiz.bookmarkSections(orderSelected: orderSelected), id:\.self) { section in
                         Section {
                             ForEach(quiz.bookmarkSection(orderSelected: orderSelected, section: section)) { bookmark in
-                                
-                                Button(action: {
-                                    selectedItem = SelectedItem(testNum: bookmark.testNum, number: bookmark.number)
-                                }, label: {
-                                    BookmarkLabelView(bookmark: bookmark, orderSelected: orderSelected)
-                                })
-                                .sheet(item: $selectedItem) { item in
-                                    AnswerSubView(testNum: item.testNum, number: item.number, answer: 0)
+                                NavigationLink {
+                                    AnswerSubView(testNum: bookmark.testNum, number: bookmark.number, answer: 0, showInfo: true)
                                         .environmentObject(quiz)
+                                } label: {
+                                    BookmarkLabelView(bookmark: bookmark, orderSelected: orderSelected)
                                 }
                             }
                             .onDelete {

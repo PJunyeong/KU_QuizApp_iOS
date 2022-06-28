@@ -30,14 +30,14 @@ struct ScoreGridView: View {
                                    isRightChecked: true,
                                    questionNum: stIdx.questionNum, selectedQuestion: stIdx.selectedQuestion, scoreSelected: $scoreSelected)
                     }
-                    }
                 }
             }
-            .animation(.easeOut, value: isAnimating)
-            .onAppear {
-                isAnimating.toggle()
-            }
-            .padding(.horizontal, 10)
+        }
+        .animation(.easeOut, value: isAnimating)
+        .onAppear {
+            isAnimating.toggle()
+        }
+        .padding(.horizontal, 10)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }

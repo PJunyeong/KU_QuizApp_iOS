@@ -27,7 +27,7 @@ struct AnswerView: View {
                     let newIdx = answers.firstIndex(of: idx) ?? 0
                     let question = quiz.fetchQuestion(testNum: quiz.scores[scoreIdx].testNum, scoreIdx: scoreIdx, questionIdx: idx)
                     let isRight = isRightChecked ? quiz.scores[scoreIdx].isRight(questionNum: idx) : nil
-                    AnswerSubView(isRight: isRight,testNum: question.testNum, number: question.number, answer: quiz.scores[scoreIdx].answers[idx])
+                    AnswerSubView(isRight: isRight,testNum: question.testNum, number: question.number, answer: quiz.scores[scoreIdx].answers[idx], showInfo: true)
                         .tag(newIdx)
                         .environmentObject(quiz)
                 }
