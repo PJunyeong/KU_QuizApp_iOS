@@ -11,25 +11,24 @@ class Quiz: Identifiable, ObservableObject {
     let questions: [Question] = Bundle.main.decode("questions.json")
     let questionBox: [QuestionBox] = Bundle.main.decode("questionBox.json")
     // 문제 정보 -> JSON 파싱
-    @Published var bookmarks: [Bookmark] = [Bookmark(testNum: 10, number: 1, type: 1)] {
+    @Published var bookmarks: [Bookmark] = [] {
         didSet {
             bookmarkSave()
     ()
         }
     }
-    @Published var notes: [Note] = [Note(testNum: 10, number: 1, type: 1, wrongCnt: 3), Note(testNum: 10, number: 2, type: 1, wrongCnt: 3), Note(testNum: 10, number: 3, type: 1), Note(testNum: 10, number: 4, type: 1), Note(testNum: 30, number: 5, type: 1), Note(testNum: 20, number: 1, type: 1)] {
+    @Published var notes: [Note] = [] {
         didSet {
             noteSave()
         }
     }
-    @Published var scores: [Score] = [Score(date: Date(), isTest: true, isSubmitted: true, testNum: 10, type: nil, questionCnt: 100, questions: nil, answers: Array(repeating: 0, count: 100)), Score(date: Date(), isTest: true, isSubmitted: true, testNum: 20, type: nil, questionCnt: 100, questions: nil, answers: Array(repeating: 0, count: 100)), Score(date: Date(), isTest: true, isSubmitted: true, testNum: 30, type: nil, questionCnt: 100, questions: nil, answers: Array(repeating: 0, count: 100)), Score(date: Date(), isTest: true, isSubmitted: true, testNum: 40, type: nil, questionCnt: 100, questions: nil, answers: Array(repeating: 0, count: 100)), Score(date: Date(), isTest: true, isSubmitted: true, testNum: 10, type: nil, questionCnt: 100, questions: nil, answers: Array(repeating: 0, count: 100))]
+    @Published var scores: [Score] = []
  {
         didSet {
             scoreSave()
         }
     }
     // 사용자 기록 -> @Published 통해 지속 관리
-    // Preview load를 위한 더미 데이터 -> 실제로는 빈 배열로 설정 후 세이브 데이터 로드하기
     
     func load() {
         bookmarkLoad()
