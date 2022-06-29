@@ -15,6 +15,7 @@ struct ScoreGridView: View {
     @State private var sliderTabIdx: SliderTabIdx? = nil
     @Binding var scoreSelected: Int
     var body: some View {
+
         ScrollView(.vertical, showsIndicators: false) {
             LazyVGrid(columns: gridLayout, alignment: .center, spacing: 10) {
                 let answers = quiz.scores[scoreIdx].selectedAnswers(scoreSelected: scoreSelected)
@@ -25,7 +26,7 @@ struct ScoreGridView: View {
                     }, label: {
                         ScoreGridLabelView(isRight: quiz.scores[scoreIdx].isRight(questionNum:idx), number: idx + 1)
                     })
-                    .sheet(item: $sliderTabIdx) { stIdx in
+                    .sheet(item: $sliderTabIdx, onDismiss: {sliderTabIdx = nil}) { stIdx in
                         AnswerView(scoreIdx: scoreIdx,
                                    isRightChecked: true,
                                    questionNum: stIdx.questionNum, selectedQuestion: stIdx.selectedQuestion, scoreSelected: $scoreSelected)
@@ -46,7 +47,7 @@ struct ScoreGridView_Previews: PreviewProvider {
     static let quiz = Quiz()
     static var previews: some View {
         let scoreIdx = 0
-        ScoreGridView(scoreIdx: scoreIdx, scoreSelected: .constant(0))
+        ScoreGridView(scoreIdx: scoreIdx, scoreSelected: .constant(1))
             .environmentObject(quiz)
     }
 }

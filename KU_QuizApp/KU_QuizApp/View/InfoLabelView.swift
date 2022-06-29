@@ -36,7 +36,7 @@ struct InfoLabelView: View {
         }
         .font(.title)
         .padding(.horizontal, 20)
-        .padding(.bottom, 10)
+        .padding(.bottom, 20)
         .foregroundColor(.accentColor)
     }
 }

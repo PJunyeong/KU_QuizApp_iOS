@@ -26,6 +26,7 @@ struct ScoreListView: View {
                         ForEach(dateSections[key] ?? [], id:\.self) { value in
                             Section {
                                 ForEach(quiz.scoreDateSection(isTest: isTest, sectionDate: key, section: value)) { score in
+                                    
                                     Button(action: {
                                         isAnswerShown.toggle()
                                     }, label: {
