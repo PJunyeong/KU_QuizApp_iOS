@@ -12,7 +12,7 @@ struct ScoreGridLabelView: View {
     let number: Int
     var body: some View {
         Text("\(number)")
-            .font(.title)
+            .font(.largeTitle)
             .fontWeight(.bold)
             .foregroundColor(isRight ? .green : .red)
     }

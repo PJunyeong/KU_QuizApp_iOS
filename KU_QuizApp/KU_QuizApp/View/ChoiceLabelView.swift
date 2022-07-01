@@ -19,21 +19,21 @@ struct ChoiceLabelView: View {
     var body: some View {
         HStack(alignment: .center) {
             Image(systemName: NumberImage(choiceNum: choiceInfo.choiceNum, selectedNum: selectedNum))
-                .font(.largeTitle)
+                .font(.title)
                 .foregroundColor(!isAnswerShown ? .accentColor : selectedNum != choiceInfo.choiceNum ? .accentColor : selectedNum == answer ? .green : .red)
                 .padding(.trailing, 10)
                 .padding(.leading, 20)
             // TODO: 전체 보기의 텍스트 박스 길이 리턴 -> 가장 큰 값 기준으로 가운데 정렬하기
 //                .padding(.leading, CustomSize.choiceIconWidth)
             Text(showInfo && !choiceInfo.choiceDetail.isEmpty ? choiceInfo.choiceDetail : choiceInfo.choice)
-                .font(.largeTitle)
+                .font(.title)
                 .multilineTextAlignment(.leading)
             Spacer()
         }
         .contentShape(Rectangle())
         .overlay(
                 RoundedRectangle(cornerRadius: 10)
-                    .strokeBorder(.gray.opacity(0.2), lineWidth: 1)
+                    .strokeBorder(.gray.opacity(0.2), lineWidth: 2)
                     .background(RoundedRectangle(cornerRadius: 10).fill(showInfo && choiceInfo.choiceNum == answer ? Color.accentColor.opacity(0.5) : .clear))
                     .padding(.horizontal, 10)
             )

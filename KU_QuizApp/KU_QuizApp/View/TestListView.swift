@@ -25,6 +25,7 @@ struct TestListView: View {
         
         VStack(alignment: .center, spacing: 15) {
             if isTest {
+                Spacer()
                 ForEach(testNums, id:\.self) { testNum in
                     Button(action: {
                         self.testNum = testNum
@@ -58,6 +59,7 @@ struct TestListView: View {
                             Text("이전부터 풀기")
                         })
                     })
+                    Spacer()
                 }
             } else {
                 ForEach(typeNums, id:\.self) { typeNum in

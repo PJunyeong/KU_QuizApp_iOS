@@ -22,7 +22,6 @@
 		4A34506928676EFE0008AC8A /* ScoreSelectOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A34506828676EFE0008AC8A /* ScoreSelectOrderView.swift */; };
 		4A34506B286773470008AC8A /* AnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A34506A286773470008AC8A /* AnswerView.swift */; };
 		4A34506D286780370008AC8A /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A34506C286780370008AC8A /* SettingView.swift */; };
-		4A34506F286780440008AC8A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A34506E286780440008AC8A /* OnboardingView.swift */; };
 		4A345071286785A50008AC8A /* SliderTabIdx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A345070286785A50008AC8A /* SliderTabIdx.swift */; };
 		4A34507328678CF40008AC8A /* SelectedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A34507228678CF40008AC8A /* SelectedItem.swift */; };
 		4A3450752868232A0008AC8A /* SettingLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3450742868232A0008AC8A /* SettingLabelView.swift */; };
@@ -86,7 +85,6 @@
 		4A34506828676EFE0008AC8A /* ScoreSelectOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreSelectOrderView.swift; sourceTree = "<group>"; };
 		4A34506A286773470008AC8A /* AnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerView.swift; sourceTree = "<group>"; };
 		4A34506C286780370008AC8A /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
-		4A34506E286780440008AC8A /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		4A345070286785A50008AC8A /* SliderTabIdx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderTabIdx.swift; sourceTree = "<group>"; };
 		4A34507228678CF40008AC8A /* SelectedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedItem.swift; sourceTree = "<group>"; };
 		4A3450742868232A0008AC8A /* SettingLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingLabelView.swift; sourceTree = "<group>"; };
@@ -249,7 +247,6 @@
 				4AA41B972861B420002D4D86 /* ScoreView.swift */,
 				4AA41BAF28621BAD002D4D86 /* ScoreDetailView.swift */,
 				4A34506C286780370008AC8A /* SettingView.swift */,
-				4A34506E286780440008AC8A /* OnboardingView.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -408,7 +405,6 @@
 				4AA41B962861B41B002D4D86 /* NoteView.swift in Sources */,
 				4A345077286823320008AC8A /* SettingRowView.swift in Sources */,
 				4AA41B892861ADC5002D4D86 /* CodableBundleExtension.swift in Sources */,
-				4A34506F286780440008AC8A /* OnboardingView.swift in Sources */,
 				4AA41B982861B420002D4D86 /* ScoreView.swift in Sources */,
 				4A345071286785A50008AC8A /* SliderTabIdx.swift in Sources */,
 				4A345065286769DA0008AC8A /* ScoreGridView.swift in Sources */,

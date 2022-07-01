@@ -11,13 +11,13 @@ struct QuestionBoxView: View {
     let questionBox: String
     var body: some View {
         Text(.init(questionBox))
-            .font(.headline)
+            .font(.system(size: CustomSize.questionDescriptFontSize))
             .multilineTextAlignment(.leading)
             .lineSpacing(3)
             .padding(.all, 10)
             .overlay(
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.gray.opacity(0.1))
+                        .fill(Color.gray.opacity(0.3))
                         .padding(.horizontal, 5)
                 )
     }
